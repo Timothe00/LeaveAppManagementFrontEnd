@@ -1,0 +1,15 @@
+<div class="wrapper">
+  <h1>Hello Again!</h1>
+  <p>
+    Welcome back you've <br />
+    been missed!
+  </p>
+  <form [formGroup]="profileForm">
+    <input type="email" placeholder="Enter email" formControlName="email"/>
+    <input type="password" placeholder="Password" formControlName="password"/>
+    <p class="recover">
+      <a href="#">Recover Password</a>
+    </p>
+  </form>
+  <button (click)="onSubmit()">Sign in</button>
+</div>
