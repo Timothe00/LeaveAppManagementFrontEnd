@@ -5,9 +5,7 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-body{
-  background: #dfe9f5;
-}
+
 .wrapper{
   width: 500px;
   padding: 2rem 0 1rem 0;
@@ -24,6 +22,15 @@ h1{
 p{
   margin-bottom: 1.7rem;
 }
+
+small{
+  color: #f80404;
+  margin-bottom: 5px;
+  margin-left: 40px;
+  float: left;
+}
+
+
 form input{
   width: 85%;
   outline: none;
@@ -38,6 +45,11 @@ form input{
   font-size: 0.8rem;
   margin: 0.2rem 2.5rem 0 0;
 }
+
+.recover{
+  margin-top: 40px;
+}
+
 .recover a{
   text-decoration: none;
   color: #07001f;
@@ -60,5 +72,9 @@ button:hover{
 .or{
   font-size: 0.8rem;
   margin-top: 1.5rem;
+}
+
+img{
+  width: 100px;
 }
 

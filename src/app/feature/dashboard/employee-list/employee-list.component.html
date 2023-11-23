@@ -1,0 +1,36 @@
+<section class="main">
+
+    <section class="attendance">
+        <div class="attendance-list">
+            <h1>Attendance List</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom & Prénoms</th>
+                        <th>Email</th>
+                        <th>Mot de passe</th>
+                        <th>Contact</th>
+                        <th>Role</th>
+                        <th>Compte</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of users">
+                        <td>{{item.firstName}} {{item.lastName}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.password}}</td>
+                        <td>{{item.phoneNumber}}</td>
+                        <td>{{item.roleName}}</td>
+                        <td>{{item.isActiveUser}}</td>
+                        <td>
+                            <button>View</button>
+                            <button>View</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>

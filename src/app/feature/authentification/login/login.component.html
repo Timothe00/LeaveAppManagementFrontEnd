@@ -1,12 +1,18 @@
 <div class="wrapper">
-  <h1>Hello Again!</h1>
+  <img src="assets/infi_software_logo.jpeg" alt="infi-logo">
+  <h1>Bonjour à nouveau!</h1>
   <p>
-    Welcome back you've <br />
-    been missed!
+    Bon retour, tu nous <br />
+    as manqué!
   </p>
   <form [formGroup]="profileForm">
-    <input type="email" placeholder="Enter email" formControlName="email"/>
-    <input type="password" placeholder="Password" formControlName="password"/>
+    <input type="email" placeholder="Entrez votre adresse e-mail" formControlName="email" required/>
+    <small *ngIf="profileForm.controls['email'].hasError('required')">*L'adresse e-mail est requise </small>
+    <small *ngIf="profileForm.controls['email'].hasError('email')">e-mail invalid </small>
+
+    <input type="password" placeholder="Password" formControlName="password" />
+    <small *ngIf="profileForm.controls['password'].hasError('required')">*Le mot de passe est requis</small>
+
     <p class="recover">
       <a href="#">Recover Password</a>
     </p>
