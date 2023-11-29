@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 //import { CoreModule } from 'src/app/core/core.module';
 import { SideNavComponent } from 'src/app/core/components/side-nav/side-nav.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { LeaveResquestListComponent } from './leave-resquest-list/leave-resquest-list.component';
 
 
 
@@ -13,7 +14,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
   declarations: [
     DashboardComponent, 
     SideNavComponent, 
-    EmployeeListComponent
+    EmployeeListComponent, LeaveResquestListComponent
   ],
   imports: [
     CommonModule,

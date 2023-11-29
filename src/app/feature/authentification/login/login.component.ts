@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { UserLogin } from 'src/app/core/models/userLogin.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { UserInTokenService } from 'src/app/core/services/userInToken/user-in-token.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,21 +22,7 @@ export class LoginComponent {
     password: new FormControl('manager2password', [Validators.required, Validators.minLength(5)]),
   });
 
-  constructor(private auth: AuthService, private route: Router) {}
-
-  // getFormControlErrorText(ctrl: AbstractControl) {
-  //   if (ctrl.hasError('required')) {
-  //     return 'Ce champ est requis';
-  //   } else if (ctrl.hasError('email')) {
-  //     return "Merci d'entrer une adresse mail valide";
-  //   } else if (ctrl.hasError('minlength')) {
-  //     return 'Veuillez saisir au moins 5 caractères';
-  //   } else if (ctrl.hasError('maxlength')) {
-  //     return 'Trop long';
-  //   } else {
-  //     return 'Ce champ contient une erreur';
-  //   }
-  // }
+  constructor(private auth: AuthService, private route: Router, private token: UserInTokenService) {}
 
   ngOnInit(): void {
     
@@ -55,6 +42,11 @@ export class LoginComponent {
       next:(res)=>{
         this.profileForm.reset()
         this.auth.storeToken(res.token);
+        const tokenPayload = this.auth.decodedToken();
+        
+        this.token.setUserFromToken(tokenPayload.unique_name);
+        this.token.setRoleFromToken(tokenPayload.role);
+
         this.route.navigate(['dashboard'])
 
         const Toast = Swal.mixin({
@@ -68,8 +60,7 @@ export class LoginComponent {
           icon: "success",
           title: "Connecté avec succès"
         });
-        
-        
+ 
       }, 
       error:()=>{
         const Toast = Swal.mixin({

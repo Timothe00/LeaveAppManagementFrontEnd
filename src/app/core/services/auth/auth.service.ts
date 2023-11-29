@@ -49,24 +49,20 @@ export class AuthService {
   decodedToken() {
     const jwtHelper = new JwtHelperService();
     const token = this.getToken()!;
-
     console.log(jwtHelper.decodeToken(token));
-
     return jwtHelper.decodeToken(token)
   }
 
 
   getfullNameInToken() {
-    if(this.userPayload){
-      return this.userPayload.name;
-    }
+    if(this.userPayload)
+    return this.userPayload.unique_name;
   }
 
   getRoleInToken() {
-    if (this.userPayload) {
-      return this.userPayload.role;
-    }
+    if (this.userPayload)
+    return this.userPayload.role;
   }
-}
+} 
 
 //demain je vais continuer "JWT Token - Role based Dashboard 15:17"

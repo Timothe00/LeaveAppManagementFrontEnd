@@ -12,7 +12,15 @@ export class ApiService {
  
   constructor(private http: HttpClient) { }
 
+  //obtenir tous les utilisateurs
   getAllUserInTableAsync(): Observable<Users[]>{
     return this.http.get<Users[]>(this.baseUrl); 
   }
+
+  deleteUserInTable(id: any){
+   const urlDelete= `${this.baseUrl}/${id}`;
+   return this.http.delete(urlDelete);
+  }
+
+
 }
