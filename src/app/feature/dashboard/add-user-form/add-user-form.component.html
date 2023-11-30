@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="title">Nouvel utilisateur</div>
+    <div class="content">
+        <form [formGroup]="addUserForm">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Nom</span>
+                    <input type="text" formControlName="firstName" placeholder="Entrer le nom" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Prénoms</span>
+                    <input type="text" formControlName="lastName" placeholder="Entrer le Prénoms" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Email</span>
+                    <input type="email" formControlName="email" placeholder="Entrer l'email" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Contact</span>
+                    <input type="number" formControlName="phoneNumber" placeholder="Entrer le numero de téléphone" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Job</span>
+                    <input type="text" formControlName="job" placeholder="Entrer le poste occupé" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Mot de passe</span>
+                    <input type="password" formControlName="password" placeholder="Entrer le mot de passe" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Role Utilisateur</span>
+                    <select name="" id="" formControlName="roleId">
+                        <option value="1">Admin</option>
+                        <option value="2">Manager</option>
+                        <option value="3">Employé</option>
+                    </select>
+                </div>
+            </div>
+            <div class="gender-details">
+                <input type="radio" name="gender" id="dot-1">
+                <input type="radio" name="gender" id="dot-2">
+                <span class="gender-title">Compte utilisateur</span>
+                <div class="category" formControlName="isActiveUser">
+                    <label for="dot-1">
+                        <span class="dot one"></span>
+                        <span class="gender">Activer</span>
+                    </label>
+                    <label for="dot-2">
+                        <span class="dot two"></span>
+                        <span class="gender">Désactiver</span>
+                    </label>
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+</div>

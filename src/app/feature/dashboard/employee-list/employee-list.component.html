@@ -3,6 +3,7 @@
     <section class="attendance">
         <div class="attendance-list">
             <h1>Attendance List</h1>
+            <button class="addClass" routerLink="add">Ajouter un utilisateur</button>
             <table class="table">
                 <thead>
                     <tr>
@@ -24,11 +25,11 @@
                         <td>{{item.roleName}}</td>
                         <td>{{item.isActiveUser}}</td>
                         <td>
-                            <button>View</button>
-                            <button>View</button>
+                            
+                            <button>Modifier</button>
+                            <button (click)="onDelete(item.id)">Supprimer</button>
                         </td>
                     </tr>
-
                 </tbody>
             </table>
         </div>

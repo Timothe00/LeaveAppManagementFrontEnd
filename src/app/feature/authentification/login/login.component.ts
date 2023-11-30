@@ -14,8 +14,8 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent {
 
-  email!: string
-  password!: string
+  // email!: string
+  // password!: string
 
   profileForm = new FormGroup({
     email: new FormControl('david.jones@example.com', [Validators.required, Validators.email]),
@@ -78,17 +78,4 @@ export class LoginComponent {
     })
 
   }
-
-  // private validateAllFormFields(profileForm:FormGroup){
-  //   Object.keys(profileForm.controls).forEach(field =>{
-  //     const control = profileForm.get(field);
-  //     if(control instanceof FormControl){
-  //       control.markAsDirty({onlySelf: true});
-  //     }else if(control instanceof FormGroup){
-  //       this.validateAllFormFields(control)
-  //     }
-  //   })
-  // }
-
-
 }

@@ -17,10 +17,9 @@ export class ApiService {
     return this.http.get<Users[]>(this.baseUrl); 
   }
 
-  deleteUserInTable(id: any){
+  deleteUserInTable(id: number){
    const urlDelete= `${this.baseUrl}/${id}`;
    return this.http.delete(urlDelete);
   }
-
 
 }
