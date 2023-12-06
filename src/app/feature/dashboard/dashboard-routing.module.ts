@@ -9,9 +9,10 @@ const routes: Routes = [
   {
     path: '', component: DashboardComponent, children:
       [
-        { path: 'EmployeeList', component: EmployeeListComponent},
+        { path: 'EmployeeList', component: EmployeeListComponent },
         { path: 'EmployeeList/add', component: AddUserFormComponent },
-        {path: 'LeaveResquestList', component: LeaveResquestListComponent}, 
+        { path: 'EmployeeList/edit/:id', component: AddUserFormComponent },
+        { path: 'LeaveResquestList', component: LeaveResquestListComponent }, 
       ]
   },
 

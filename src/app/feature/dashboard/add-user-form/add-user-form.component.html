@@ -17,10 +17,10 @@
                 </div>
                 <div class="input-box">
                     <span class="details">Contact</span>
-                    <input type="number" formControlName="phoneNumber" placeholder="Entrer le numero de téléphone" required>
+                    <input type="text" formControlName="phoneNumber" placeholder="Entrer le numero de téléphone" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">Job</span>
+                    <span class="details">Poste occupé</span>
                     <input type="text" formControlName="job" placeholder="Entrer le poste occupé" required>
                 </div>
                 <div class="input-box">
@@ -30,29 +30,27 @@
                 <div class="input-box">
                     <span class="details">Role Utilisateur</span>
                     <select name="" id="" formControlName="roleId">
-                        <option value="1">Admin</option>
-                        <option value="2">Manager</option>
-                        <option value="3">Employé</option>
+                        <option *ngFor="let role of roles" [value]="role.id">{{role.roleName}}</option> 
                     </select>
                 </div>
             </div>
             <div class="gender-details">
-                <input type="radio" name="gender" id="dot-1">
-                <input type="radio" name="gender" id="dot-2">
+                <input type="radio" formControlName="isActiveUser" name="isActiveUser" id="dot-1" value="true">
+                <input type="radio" formControlName="isActiveUser" name="isActiveUser" id="dot-2" value="false">
                 <span class="gender-title">Compte utilisateur</span>
-                <div class="category" formControlName="isActiveUser">
+                <div class="category">
                     <label for="dot-1">
                         <span class="dot one"></span>
-                        <span class="gender">Activer</span>
+                        <span class="isActiveUser">Activer</span>
                     </label>
                     <label for="dot-2">
                         <span class="dot two"></span>
-                        <span class="gender">Désactiver</span>
+                        <span class="isActiveUser">Désactiver</span>
                     </label>
                 </div>
-            </div>
+             </div>
             <div class="button">
-                <input type="submit" value="Register">
+                <input type="submit" (click)="onSubmit()" value="Register">
             </div>
         </form>
     </div>

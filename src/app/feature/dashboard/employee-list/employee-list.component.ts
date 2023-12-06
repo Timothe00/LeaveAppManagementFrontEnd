@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Users } from 'src/app/core/models/users';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import Swal from 'sweetalert2';
@@ -10,10 +11,9 @@ import Swal from 'sweetalert2';
 })
 export class EmployeeListComponent {
 
-
   users: Users[] = [];
   //user!: Users;
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchAllAllUser();
@@ -70,6 +70,11 @@ export class EmployeeListComponent {
           });
       }
     });
+  }
+
+
+  onUpdate(id: number) {
+    this.router.navigate([`dashboard/EmployeeList/edit/${id}`]);
   }
 
 }

@@ -11,20 +11,7 @@ import { UserInTokenService } from 'src/app/core/services/userInToken/user-in-to
 export class DashboardComponent {
 
  fullName!: string;
-
-//  id! : number;
-//  user : Users = {
-//   email:'',
-//   firstName: '',
-//   id: 0,
-//   isActiveUser: false,
-//   job: '',
-//   lastName: '',
-//   phoneNumber: '',
-//   roleId: 0,
-//   password: '',
-//   roleName: ''
-//  }
+ role!: string;
  constructor(private userToken: UserInTokenService, private auth: AuthService) {}
 
 
@@ -33,6 +20,12 @@ export class DashboardComponent {
   .subscribe(data=>{
     let fullNameFromToken = this.auth.getfullNameInToken();
     this.fullName = data || fullNameFromToken 
+  })
+
+  this.userToken.getUserRoleFromToken()
+  .subscribe(value =>{
+    const roleFromToken = this.auth.getRoleInToken();
+    this.role = value|| roleFromToken
   })
  }
 

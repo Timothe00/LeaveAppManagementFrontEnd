@@ -1,1 +1,40 @@
-<p>leave-resquest-list works!</p>
+<section class="main">
+
+    <section class="attendance">
+        <div class="attendance-list">
+            <h1>LISTE DES REQUETES A VALIDER</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Date demande</th>
+                        <th>Type de congé</th>
+                        <th>Début</th>
+                        <th>Fin</th>
+                        <th>Nombre de jours</th>
+                        <th>Commentaire</th>
+                        <th>Status</th>          
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor=" let req of request">
+                        <td>{{req.firstName}} {{req.lastName}}</td>
+                        <td>{{req.dateRequest|date}}</td>
+                        <td>{{req.leaveTypeName}}</td>
+                        <td>{{req.dateStart|date}}</td>
+                        <td>{{req.dateEnd|date}}</td>
+                        <td>{{req.numberOfDays}} jours</td>
+                        <td>{{req.commentary}}</td>
+                        <td>{{req.requestStatus}}</td>
+                        
+                        <td>
+                            <button>Modifier</button>
+                            <button>Détails</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>

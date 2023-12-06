@@ -3,13 +3,14 @@
 
   <section class="main">
     <div class="main-top">
-      <h1>Skills</h1>
+      <h1>RAPPORTS</h1>
       <i class="fas fa-user">Bonjour, {{fullName}}</i>
     </div>
     <div class="main-skills">
       <div class="card">
         <i class="fas fa-laptop-code"></i>
-        <h3>Web developemt</h3>
+        <h3 *ngIf="role === 'Employee'">Demande entente</h3>
+        <h3 *ngIf="role === 'Manager'||'Admin'">Web developemt</h3>
         <p>Join Over 1 million Students.</p>
         <button>Get Started</button>
       </div>
@@ -34,7 +35,7 @@
     </div>
 
     <section class="main-course">
-      <h1>My courses</h1>
+      <h1>LES DETAILS</h1>
       <router-outlet></router-outlet>
     </section>
   </section>
