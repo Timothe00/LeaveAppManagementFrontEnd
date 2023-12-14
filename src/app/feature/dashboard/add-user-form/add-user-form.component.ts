@@ -1,9 +1,8 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostUser } from 'src/app/core/models/postUser.model';
+import { User } from 'src/app/core/models/User.model';
 import { Role } from 'src/app/core/models/role.model';
-import { User } from 'src/app/core/models/updateUser.model';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import Swal from 'sweetalert2';
 
@@ -14,16 +13,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./add-user-form.component.scss']
 })
 export class AddUserFormComponent {
-  data!: PostUser;
+  data!: User;
   roles!: Role[];
-  userUpdate!: User;
+ 
 
   constructor(private api: ApiService,
     private router: Router,
-    private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef) { }
+    private route: ActivatedRoute) { }
 
   addUserForm = new FormGroup({
+    id : new FormControl(),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     job: new FormControl('', [Validators.required]),
@@ -48,19 +47,17 @@ export class AddUserFormComponent {
     const userId = this.route.snapshot.params['id'];
     this.api.getUserByIdIntable(userId).subscribe({
       next: (val: any) => {
-        this.userUpdate = val
         this.addUserForm.setValue({
-          firstName: this.userUpdate.firstName,
-          lastName: this.userUpdate.lastName,
-          job: this.userUpdate.job,
-          email: this.userUpdate.email,
-          phoneNumber: this.userUpdate.phoneNumber,
-          roleId: this.userUpdate.roleId,
-          password: '', // ou this.userUpdate.password
-          isActiveUser: this.userUpdate.isActiveUser,
+          id: val.id,
+          firstName: val.firstName || '',
+          lastName: val.lastName || '',
+          job: val.job || '',
+          email: val.email || '',
+          phoneNumber: val.phoneNumber || '',
+          roleId: val.roleId || 1,
+          password: val.password || '',
+          isActiveUser: val.isActiveUser || true,
         });
-        console.log('Succès', this.userUpdate);
-        this.cdr.detectChanges();
       },
       error: (err: any) => {
         console.error('Erreur lors de l\'accès à l\'utilisateur', err);
@@ -70,26 +67,29 @@ export class AddUserFormComponent {
 
 
   onSubmit() {
-    if (this.userUpdate) {
-      this.api.UpdateUserInTable(this.userUpdate.id, this.userUpdate).subscribe({
-        next: (val: any) => {
-          this.userUpdate = val
-          console.log('Succès', this.userUpdate);
+    console.log("result", this.addUserForm.value);
+    if (this.addUserForm.valid) {
+      
+      this.api.UpdateUserInTable(this.addUserForm.value.id, this.data).subscribe({
+        next: (response: any) => {
+          this.data = response
+          console.log("update", this.data);
         },
         error: (err: any) => {
           console.error('Erreur lors de la mise à jour de l\'utilisateur', err);
         }
       })
     } else {
-      const data: PostUser = {
-        email: this.addUserForm.value.email as string,
-        firstName: this.addUserForm.value.firstName as string,
-        lastName: this.addUserForm.value.lastName as string,
-        isActiveUser: true,
-        password: this.addUserForm.value.password as string,
-        phoneNumber: this.addUserForm.value.phoneNumber as string,
-        roleId: this.addUserForm.value.roleId as number,
-        job: this.addUserForm.value.job as string
+      const data: User = {
+        id: this.addUserForm.value as number,
+        email: this.addUserForm.value as string,
+        firstName: this.addUserForm.value as string,
+        lastName: this.addUserForm.value as string,
+        isActiveUser: this.addUserForm.value as unknown as boolean,
+        password: this.addUserForm.value as string,
+        phoneNumber: this.addUserForm.value as string,
+        roleId: this.addUserForm.value as number,
+        job: this.addUserForm.value as string
       }
 
       Swal.fire({

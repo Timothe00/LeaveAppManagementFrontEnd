@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Users } from '../../models/users';
 import { Observable } from 'rxjs';
-import { PostUser } from '../../models/postUser.model';
 import { Role } from '../../models/role.model';
-import { User } from '../../models/updateUser.model';
+import { User } from '../../models/User.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +35,8 @@ export class ApiService {
   }
 
   //ajouter un utilisateur
-  addUserInTable(data: PostUser): Observable<PostUser>{
-    return this.http.post<PostUser>(`${this.apiUrl}`, data)
+  addUserInTable(data: User): Observable<User>{
+    return this.http.post<User>(`${this.apiUrl}`, data)
   }
 
   //Modifier un utilisateur
