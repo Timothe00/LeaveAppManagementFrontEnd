@@ -1,5 +1,5 @@
-export class User {
-    id!: number
+export class postUser {
+    id?: number
     firstName!: string
     lastName!: string
     email!: string
