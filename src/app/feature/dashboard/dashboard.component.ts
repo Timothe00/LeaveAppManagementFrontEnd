@@ -20,12 +20,13 @@ export class DashboardComponent {
   .subscribe(data=>{
     let fullNameFromToken = this.auth.getfullNameInToken();
     this.fullName = data || fullNameFromToken 
+    
   })
 
   this.userToken.getUserRoleFromToken()
   .subscribe(value =>{
     const roleFromToken = this.auth.getRoleInToken();
-    this.role = value|| roleFromToken
+    this.role = value || roleFromToken
   })
  }
 

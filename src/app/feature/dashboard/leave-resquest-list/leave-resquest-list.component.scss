@@ -84,3 +84,10 @@ $primary-color: #f36d2a;
   margin-top: 15px;
   cursor: pointer;
 }
+
+.tronc{
+  width: 200px; /* Définissez la largeur du conteneur en fonction de vos besoins */
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}

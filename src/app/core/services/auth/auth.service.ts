@@ -63,6 +63,9 @@ export class AuthService {
     if (this.userPayload)
     return this.userPayload.role;
   }
-} 
 
-//demain je vais continuer "JWT Token - Role based Dashboard 15:17"
+  getIdInToken() {
+    if (this.userPayload)
+    return this.userPayload.primarysId;
+  }
+} 

@@ -1,7 +1,18 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Users } from '../../models/users';
-import { HttpClient } from '@angular/common/http';
+// import { Users } from '../../models/users';
+// import { HttpClient } from '@angular/common/http';
+import { jwtDecode } from 'jwt-decode'
+
+export interface InfoUserToken {
+  primarysid: string
+  unique_name: string
+  role: string
+  nbf: number
+  exp: number
+  iat: number
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +21,11 @@ import { HttpClient } from '@angular/common/http';
 //nous allons identifier l'utilisateur connecté qui dans le token
 export class UserInTokenService {
 
-  private primarysId$ = new BehaviorSubject<string>("0");
+  private primarysId$ = new BehaviorSubject<string>("1");
   private unique_name$ = new BehaviorSubject<string>("");
   private role$ = new BehaviorSubject<string>("");
   
-  //baseUrl = "https://localhost:7240/api/Users"
-  constructor(private http : HttpClient) { }
+  constructor() { }
 
 //Renvoie un observable qui peut être utilisé pour suivre les changements du nom complet de l'utilisateur.
   public getUserFromToken(){
@@ -26,10 +36,6 @@ export class UserInTokenService {
   public setUserFromToken(unique_name: string){
     this.unique_name$.next(unique_name);
   }
-
-  // getUserById(id: number) : Observable<Users>{
-  //     return this.http.get<Users>(`${this.baseUrl}/${id}`)
-  // }
 
 
 
@@ -54,5 +60,31 @@ export class UserInTokenService {
     this.primarysId$.next(primarysId)
   }
 
+  getInfoUserToken() {
+    let userTokenInfo: InfoUserToken = {
+      primarysid:"",
+      role: '',
+      unique_name:'',
+      exp: 0,
+      iat: 0,
+      nbf: 0,
+    };
+
+    let token = localStorage.getItem('token');
+
+    if (token != null) {
+      const decode: InfoUserToken = jwtDecode<InfoUserToken>(token);
+      userTokenInfo.primarysid = decode.primarysid;
+      userTokenInfo.unique_name = decode.unique_name;
+      userTokenInfo.role = decode.role;
+      userTokenInfo.exp = decode.exp;
+      userTokenInfo.iat = decode.iat;
+      userTokenInfo.nbf = decode.nbf;
+    }
+
+    return userTokenInfo;
+  }
 }
+
+
 //npm i @auth0/angular-jwt: ce package sera utilisé pour decrypter le token au niveau de authService

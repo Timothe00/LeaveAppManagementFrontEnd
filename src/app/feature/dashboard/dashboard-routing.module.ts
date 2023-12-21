@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { LeaveResquestListComponent } from './leave-resquest-list/leave-resquest-list.component';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
+import { LeaveRequestFormComponent } from './leave-request-form/leave-request-form.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,9 @@ const routes: Routes = [
         { path: 'EmployeeList', component: EmployeeListComponent },
         { path: 'EmployeeList/add', component: AddUserFormComponent },
         { path: 'EmployeeList/edit/:id', component: AddUserFormComponent },
-        { path: 'LeaveResquestList', component: LeaveResquestListComponent }, 
+        { path: 'LeaveResquestList', component: LeaveResquestListComponent },
+        { path: 'leave-request-form/add', component: LeaveRequestFormComponent },
+        { path: 'leave-request-form/edit/:id', component: LeaveRequestFormComponent } 
       ]
   },
 

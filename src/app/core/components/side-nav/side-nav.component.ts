@@ -9,6 +9,7 @@ import { UserInTokenService } from '../../services/userInToken/user-in-token.ser
 })
 export class SideNavComponent {
   role!: string;
+  Active!: string;
   constructor(private userToken: UserInTokenService, private auth: AuthService) {}
 
 

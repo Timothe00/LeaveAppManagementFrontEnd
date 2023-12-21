@@ -13,7 +13,7 @@
       </a>
     </li>
     <li>
-      <a href="">
+      <a href="" >
         <i class="fas fa-user"></i>
         <span class="nav-item">Profile</span>
       </a>
@@ -24,14 +24,15 @@
         <span class="nav-item">Liste des Employés</span>
       </a>
     </li>
-    <li *ngIf="role === 'Manager'">
+    <li *ngIf="role === 'Manager' || role === 'Employee'">
       <a routerLink="LeaveResquestList">
         <i class="fas fa-chart-bar"></i>
-        <span class="nav-item">Liste des demandes</span>
+        <span class="nav-item" *ngIf="role === 'Manager'">Demandes en attentes</span>
+        <span class="nav-item" *ngIf="role === 'Employee'">Liste de mes demandes</span>
       </a>
     </li>
-    <li>
-      <a href="">
+    <li *ngIf="role === 'Employee'">
+      <a routerLink="leave-request-form/add">
         <i class="fas fa-question-circle"></i>
         <span class="nav-item">Effectuer une demande</span>
       </a>

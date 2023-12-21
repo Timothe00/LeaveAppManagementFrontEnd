@@ -9,7 +9,9 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { LeaveResquestListComponent } from './leave-resquest-list/leave-resquest-list.component';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import {HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LeaveRequestFormComponent } from './leave-request-form/leave-request-form.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -18,13 +20,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     SideNavComponent, 
     EmployeeListComponent, 
     LeaveResquestListComponent, 
-    AddUserFormComponent
+    AddUserFormComponent, 
+    LeaveRequestFormComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    FormsModule,
+    HttpClientModule,
+    SharedModule
     //CoreModule
   ]
 })

@@ -2,7 +2,8 @@
 
     <section class="attendance">
         <div class="attendance-list">
-            <h1>LISTE DES REQUETES A VALIDER</h1>
+            <h1 *ngIf="role === 'Manager'">LISTE DES REQUETES A VALIDER</h1>
+            <h1 *ngIf="role === 'Employee'">LISTE DE MES DEMANDES EFFECTUEES</h1>
             <table class="table">
                 <thead>
                     <tr>
@@ -13,7 +14,7 @@
                         <th>Fin</th>
                         <th>Nombre de jours</th>
                         <th>Commentaire</th>
-                        <th>Status</th>          
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -25,12 +26,15 @@
                         <td>{{req.dateStart|date}}</td>
                         <td>{{req.dateEnd|date}}</td>
                         <td>{{req.numberOfDays}} jours</td>
-                        <td>{{req.commentary}}</td>
-                        <td>{{req.requestStatus}}</td>
-                        
-                        <td>
-                            <button>Modifier</button>
-                            <button>Détails</button>
+                        <td >{{req.commentary| cutText: 20}}</td>
+                        <td>{{getStatus(req.requestStatus)}}</td>
+                        <td *ngIf="role === 'Employee'">
+                            <button (click)="onClikToUpdate(req.id)"
+                             [disabled]="req.requestStatus==='Accepted'||req.requestStatus==='Rejected'">Modifier</button>
+                        </td>
+                        <td *ngIf="role === 'Manager'">
+                            <button (click)="updateStatus(req.id, 'Accepted')">Accepter</button>
+                            <button (click)="updateStatus(req.id, 'Rejected')">Refuser</button>
                         </td>
                     </tr>
                 </tbody>

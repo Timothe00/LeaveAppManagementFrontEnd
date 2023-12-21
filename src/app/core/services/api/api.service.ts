@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { Users } from '../../models/users';
 import { Observable } from 'rxjs';
 import { Role } from '../../models/role.model';
-import { User } from '../../models/User.model';
+import { postUser } from '../../models/postUser.model';
+import { updateUser } from '../../models/updateUser.model';
+import { LeaveType } from '../../models/leaveType.model';
+
 
 
 @Injectable({
@@ -14,6 +17,7 @@ export class ApiService {
   private baseUrl: string = "https://localhost:7240/api/Users";
   private apiUrl: string = "https://localhost:7240/api/Users/add";
   private roleUrl: string = "https://localhost:7240/api/Role";
+  private leaveUrl: string = "https://localhost:7240/api/LeaveType";
 
   constructor(private http: HttpClient) { }
 
@@ -35,18 +39,23 @@ export class ApiService {
   }
 
   //ajouter un utilisateur
-  addUserInTable(data: User): Observable<User>{
-    return this.http.post<User>(`${this.apiUrl}`, data)
+  addUserInTable(data: postUser): Observable<postUser>{
+    return this.http.post<postUser>(`${this.apiUrl}`, data)
   }
 
   //Modifier un utilisateur
-  UpdateUserInTable(id: number, data: User): Observable<User>{
-    return this.http.put<User>(`${this.baseUrl}/${id}`, data)
+  UpdateUserInTable(id: number, data: updateUser): Observable<updateUser>{
+    return this.http.put<updateUser>(`${this.baseUrl}/${id}`, data)
   }
 
   //obtenir tous les roles
   getRole(): Observable<Role[]>{
     return this.http.get<Role[]>(`${this.roleUrl}`)
   }
+
+  //obtenir tous les congés
+   getLeaveType(): Observable<LeaveType[]>{
+    return this.http.get<LeaveType[]>(`${this.leaveUrl}`)
+   }
 
 }
