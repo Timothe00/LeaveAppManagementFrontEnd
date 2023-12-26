@@ -5,8 +5,11 @@ import { Observable } from 'rxjs';
 import { Role } from '../../models/role.model';
 import { postUser } from '../../models/postUser.model';
 import { updateUser } from '../../models/updateUser.model';
+<<<<<<< HEAD
 import { LeaveType } from '../../models/leaveType.model';
 
+=======
+>>>>>>> c7af46ddbc3ceef7d30f5fecafbd164527d145fe
 
 
 @Injectable({

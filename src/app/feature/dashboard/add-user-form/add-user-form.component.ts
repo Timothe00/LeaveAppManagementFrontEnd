@@ -2,11 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { postUser } from 'src/app/core/models/postUser.model';
-
 import { Role } from 'src/app/core/models/role.model';
 import { updateUser } from 'src/app/core/models/updateUser.model';
 import { ApiService } from 'src/app/core/services/api/api.service';
-import Swal from 'sweetalert2';
 
 
 @Component({
@@ -21,7 +19,6 @@ export class AddUserFormComponent {
   isUpdate: boolean= false;
   currentForm!: FormGroup;
   
-
   constructor(private api: ApiService,
     private router: Router,
     private route: ActivatedRoute) { }
@@ -37,8 +34,9 @@ export class AddUserFormComponent {
     isActiveUser: new FormControl(true, [Validators.required]),
   });
 
+
   updateUserForm = new FormGroup({
-    id: new FormControl(''),  // Vous pouvez également le désactiver pour qu'il ne soit pas modifiable
+    id: new FormControl(),  // Vous pouvez également le désactiver pour qu'il ne soit pas modifiable
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -61,7 +59,7 @@ export class AddUserFormComponent {
       this.currentForm = this.addUserForm;
     }
     
-    this.api.getRole().pipe().subscribe((res) => {
+    this.api.getRole().pipe().subscribe((res: Role[]) => {
       this.roles = res
     })
   }
@@ -80,7 +78,7 @@ export class AddUserFormComponent {
 
 
   onSubmit(): void {
-    if (this.currentForm.valid) {
+    if (this.currentForm.valid){ 
       if (this.isUpdate) {
         const userId = this.currentForm.value.id;
         const updateUser: updateUser = {
@@ -117,6 +115,7 @@ export class AddUserFormComponent {
         this.api.addUserInTable(postUser).subscribe({
           next: (response: any) => {
             console.log('Ajout utilisateur', response);
+
           },
           error: (err: any) => {
             console.error('Erreur lors de l\'ajout de l\'utilisateur', err);
@@ -124,6 +123,7 @@ export class AddUserFormComponent {
         });
       }
     }
+
   }
 }
 
