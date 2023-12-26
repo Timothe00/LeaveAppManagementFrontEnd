@@ -46,7 +46,7 @@ export class LeaveResquestListComponent {
       .subscribe(
         {
           next: (user: any) => {
-            console.log('user to token', user);
+            console.log('user in token', user);
             this.user = user
           },
           error: (err: any) => {
@@ -61,6 +61,8 @@ export class LeaveResquestListComponent {
       .subscribe({
         next: (res: LeaveRequest[]) => {
           this.request = res
+          console.log('hee', this.request);
+          
         },
         error: (err: any) => {
           console.log(err);

@@ -17,13 +17,9 @@ import { UserInTokenService } from 'src/app/core/services/userInToken/user-in-to
 })
 export class LeaveRequestFormComponent {
 
-
-
   leaves!: LeaveType[];
   primarysId!: string;
-
   isHidden: boolean = true; // hidden par defaut
-
   currentForm!: FormGroup;
   isUpdate: boolean= false;
 
