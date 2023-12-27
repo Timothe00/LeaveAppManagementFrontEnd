@@ -17,12 +17,11 @@ export class LeaveResquestListComponent {
 
   request: LeaveRequest[] = [];
   user!: Users;
-  primarysId!: string
   role!: string;
-  
+
   constructor(
-    private api: RequestService, 
-    private apiUser: ApiService, 
+    private api: RequestService,
+    private apiUser: ApiService,
     private token: UserInTokenService,
     private auth: AuthService,
     private router: Router) { }
@@ -34,10 +33,10 @@ export class LeaveResquestListComponent {
     this.getAllRequest();
 
     this.token.getUserRoleFromToken()
-    .subscribe(value =>{
-      const roleFromToken = this.auth.getRoleInToken();
-      this.role = value|| roleFromToken
-    })
+      .subscribe(value => {
+        const roleFromToken = this.auth.getRoleInToken();
+        this.role = value || roleFromToken
+      })
   }
 
 
@@ -56,13 +55,32 @@ export class LeaveResquestListComponent {
   }
 
 
+  
+  filterRequestsByUserRole(requests: LeaveRequest[]): LeaveRequest[] {
+    // Récupérer le rôle de l'utilisateur connecté
+    const userRole = this.role;
+
+    // Si l'utilisateur a le rôle de manager, renvoyer toutes les demandes
+    if (userRole === 'Manager') {
+      return requests;
+    }
+
+    // Si l'utilisateur n'est pas un manager, filtrer les demandes pour ne montrer que celles de l'utilisateur connecté
+    const userToken = this.token.getInfoUserToken();
+    const userId = +userToken.primarysid;
+
+    return requests.filter(request => request.employeeId === userId);
+  }
+
+
   getAllRequest(): void {
     this.api.getAllRequestInTable()
       .subscribe({
         next: (res: LeaveRequest[]) => {
-          this.request = res
-          console.log('hee', this.request);
-          
+          // Filtrer les demandes en fonction du rôle de l'utilisateur connecté
+          this.request = this.filterRequestsByUserRole(res);
+          console.log('response', this.request);
+
         },
         error: (err: any) => {
           console.log(err);
@@ -86,6 +104,8 @@ export class LeaveResquestListComponent {
       }
     });
   }
+
+
 
 
   getStatus(status: string): string {

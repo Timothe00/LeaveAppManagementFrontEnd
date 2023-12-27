@@ -7,6 +7,7 @@ export class LeaveRequest {
     commentary!: string
     requestStatus!: string
     leaveTypeName!: string
+    employeeId!: number
     firstName!: string
     lastName!: string
   }
