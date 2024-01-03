@@ -1,0 +1,69 @@
+<div class="elementDiv">
+<div class="card">
+    <div class="left-container">
+      <img
+        src="assets/WhatsApp Image 2024-01-03 à 08.39.41_d06b93a3.jpg"
+        alt="Profile Image"
+      />
+      <h2 class="gradienttext">{{fullName}}</h2>
+      <p>Web Developer</p>
+    </div>
+    <div class="container">
+      <div class="title">Mon Profile</div>
+      <div class="content">
+        <form [formGroup]="userForm">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Nom</span>
+                    <input type="text" formControlName="firstName" placeholder="Entrer le nom" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Prénoms</span>
+                    <input type="text" formControlName="lastName" placeholder="Entrer le Prénoms" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Email</span>
+                    <input type="email" formControlName="email" placeholder="Entrer l'email" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Contact</span>
+                    <input type="text" formControlName="phoneNumber" placeholder="Entrer le numero de téléphone" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Poste occupé</span>
+                    <input type="text" formControlName="job" placeholder="Entrer le poste occupé" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Mot de passe</span>
+                    <input type="password" formControlName="password" placeholder="Entrer le mot de passe" required>
+                </div>
+                <div class="input-box" [hidden]="isHidden">
+                    <span class="details">Role Utilisateur</span>
+                    <select name="" id="" formControlName="roleId" readonly>
+                        <option *ngFor="let role of roles" [value]="role.id" readonly>{{role.roleName}}</option> 
+                    </select>
+                </div>
+            </div>
+            <div class="gender-details" [hidden]="isHidden">
+                <input type="radio" formControlName="isActiveUser" name="isActiveUser" id="dot-1" value="true" readonly>
+                <input type="radio" formControlName="isActiveUser" name="isActiveUser" id="dot-2" value="false" readonly>
+                <span class="gender-title">Compte utilisateur</span>
+                <div class="category">
+                    <label for="dot-1">
+                        <span class="dot one"></span>
+                        <span class="isActiveUser">Activer</span>
+                    </label>
+                    <label for="dot-2">
+                        <span class="dot two"></span>
+                        <span class="isActiveUser">Désactiver</span>
+                    </label>
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" (click)="onSubmit()" value="Register">
+            </div>
+        </form>
+    </div>
+  </div>
+  </div>   
+</div>

@@ -24,6 +24,7 @@ export class LeaveRequestFormComponent {
   isUpdate: boolean= false;
 
   addLeaveForm!: FormGroup
+  
   updateLeaveForm = new FormGroup({
     id: new FormControl(), 
     dateStart: new FormControl(new Date, [Validators.required]),
@@ -105,6 +106,7 @@ export class LeaveRequestFormComponent {
           commentary: this.updateLeaveForm.value.commentary!,
           leaveTypeId: this.updateLeaveForm.value.leaveId!
         }
+
         this.req.updateRequestInTable(leavId, updateLeave).subscribe({
           next: (response: any) => {
             console.log('Mise à jour de la demande', response);

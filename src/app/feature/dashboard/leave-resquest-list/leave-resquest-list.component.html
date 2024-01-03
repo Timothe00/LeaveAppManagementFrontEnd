@@ -26,7 +26,7 @@
                         <td>{{req.dateStart|date}}</td>
                         <td>{{req.dateEnd|date}}</td>
                         <td>{{req.numberOfDays}} jours</td>
-                        <td >{{req.commentary| cutText: 20}}</td>
+                        <td>{{req.commentary| cutText: 20}}</td>
                         <td>{{getStatus(req.requestStatus)}}</td>
                         <td *ngIf="role === 'Employee'">
                             <button (click)="onClikToUpdate(req.id)"

@@ -12,6 +12,7 @@ import {HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeaveRequestFormComponent } from './leave-request-form/leave-request-form.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { UserProfilComponent } from './user-profil/user-profil.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     EmployeeListComponent, 
     LeaveResquestListComponent, 
     AddUserFormComponent, 
-    LeaveRequestFormComponent
+    LeaveRequestFormComponent, 
+    UserProfilComponent
   ],
   imports: [
     CommonModule,

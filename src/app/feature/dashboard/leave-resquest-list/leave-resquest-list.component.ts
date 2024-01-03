@@ -45,7 +45,6 @@ export class LeaveResquestListComponent {
       .subscribe(
         {
           next: (user: any) => {
-            console.log('user in token', user);
             this.user = user
           },
           error: (err: any) => {
@@ -80,7 +79,6 @@ export class LeaveResquestListComponent {
           // Filtrer les demandes en fonction du rôle de l'utilisateur connecté
           this.request = this.filterRequestsByUserRole(res);
           console.log('response', this.request);
-
         },
         error: (err: any) => {
           console.log(err);
