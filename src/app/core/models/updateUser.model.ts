@@ -4,7 +4,7 @@ export class updateUser {
     firstName!: string
     lastName!: string
     email!: string
-    password!: string
+    password?: string
     phoneNumber!: string
     job!: string
     isActiveUser!: boolean

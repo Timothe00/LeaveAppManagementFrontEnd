@@ -87,7 +87,7 @@ export class AddUserFormComponent {
           lastName: this.updateUserForm.value.lastName as string,
           email: this.updateUserForm.value.email as string,
           isActiveUser: true,
-          password: this.updateUserForm.value.password as string,
+          //password: this.updateUserForm.value.password as string,
           phoneNumber: this.updateUserForm.value.phoneNumber as string,
           roleId: this.updateUserForm.value.roleId as number,
           job: this.updateUserForm.value.job as string,

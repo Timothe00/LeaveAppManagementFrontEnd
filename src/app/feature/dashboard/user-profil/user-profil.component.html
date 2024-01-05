@@ -34,14 +34,20 @@
                     <input type="text" formControlName="job" placeholder="Entrer le poste occupé" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">Mot de passe</span>
-                    <input type="password" formControlName="password" placeholder="Entrer le mot de passe" required>
+                    <span class="details">Changer le mot de passe?</span>
+                    <div class="password-input-container">
+                      <input class="passwordinput" type="{{ passwordVisible ? 'text' : 'password' }}" formControlName="password" id="password" required />
+                      <span class="password-toggle-icon" (click)="togglePasswordVisibility()">
+                        <i class="fas" [ngClass]="{ 'fa-eye-slash': !passwordVisible, 'fa-eye': passwordVisible }"></i>
+                      </span>
+                    </div>
                 </div>
+                  
                 <div class="input-box" [hidden]="isHidden">
                     <span class="details">Role Utilisateur</span>
-                    <select name="" id="" formControlName="roleId" readonly>
+                    <!-- <select name="" id="" formControlName="roleId" readonly>
                         <option *ngFor="let role of roles" [value]="role.id" readonly>{{role.roleName}}</option> 
-                    </select>
+                    </select> -->
                 </div>
             </div>
             <div class="gender-details" [hidden]="isHidden">
@@ -49,18 +55,19 @@
                 <input type="radio" formControlName="isActiveUser" name="isActiveUser" id="dot-2" value="false" readonly>
                 <span class="gender-title">Compte utilisateur</span>
                 <div class="category">
-                    <label for="dot-1">
+                    <!-- <label for="dot-1">
                         <span class="dot one"></span>
                         <span class="isActiveUser">Activer</span>
                     </label>
                     <label for="dot-2">
                         <span class="dot two"></span>
                         <span class="isActiveUser">Désactiver</span>
-                    </label>
+                    </label> -->
                 </div>
             </div>
             <div class="button">
                 <input type="submit" (click)="onSubmit()" value="Register">
+                <input type="submit" (click)="onPasswordChange()" value="Change password">
             </div>
         </form>
     </div>

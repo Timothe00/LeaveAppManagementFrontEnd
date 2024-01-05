@@ -6,6 +6,8 @@ import { Role } from '../../models/role.model';
 import { postUser } from '../../models/postUser.model';
 import { updateUser } from '../../models/updateUser.model';
 import { LeaveType } from '../../models/leaveType.model';
+import { UpdatePassword } from '../../models/password.interface';
+
 
 
 @Injectable({
@@ -14,7 +16,7 @@ import { LeaveType } from '../../models/leaveType.model';
 export class ApiService {
 
   private baseUrl: string = "https://localhost:7240/api/Users";
-  private apiUrl: string = "https://localhost:7240/api/Users/add";
+  // private apiUrl: string = "https://localhost:7240/api/Users/add";
   private roleUrl: string = "https://localhost:7240/api/Role";
   private leaveUrl: string = "https://localhost:7240/api/LeaveType";
 
@@ -39,13 +41,20 @@ export class ApiService {
 
   //ajouter un utilisateur
   addUserInTable(data: postUser): Observable<postUser>{
-    return this.http.post<postUser>(`${this.apiUrl}`, data)
+    return this.http.post<postUser>(`${this.baseUrl}/add`, data)
   }
 
   //Modifier un utilisateur
   UpdateUserInTable(id: number, data: updateUser): Observable<updateUser>{
     return this.http.put<updateUser>(`${this.baseUrl}/${id}`, data)
   }
+
+  //modifier uniquement le mot de passe
+  updateUserPassword(body: UpdatePassword): Observable<UpdatePassword> {
+    const url = `${this.baseUrl}/password`;
+    return this.http.put<UpdatePassword>(url, body);
+  }
+
 
   //obtenir tous les roles
   getRole(): Observable<Role[]>{

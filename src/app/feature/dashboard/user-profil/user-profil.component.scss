@@ -178,6 +178,7 @@ form .button input {
   width: 50%;
   border-radius: 5px;
   border: none;
+  margin: 10px;
   color: #fff;
   font-size: 18px;
   font-weight: 500;
@@ -224,5 +225,47 @@ form .button input:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 150px;
+}
+
+.input-box {
+  position: relative;
+}
+
+.password-input-container {
+  position: relative;
+}
+
+.passwordinput {
+  padding-right: 30px; /* Ajustez la valeur en fonction de la taille de l'icône */
+}
+
+.password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  margin-top: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+
+.password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.password-toggle-icon i {
+  font-size: 18px;
+  line-height: 1;
+  color: #333;
+  transition: color 0.3s ease-in-out;
+  margin-bottom: 20px;
+}
+
+.password-toggle-icon i:hover {
+  color: #000;
 }
