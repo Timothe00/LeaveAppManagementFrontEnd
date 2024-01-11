@@ -17,6 +17,7 @@ body{
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 100px;
   width: 100%;
   background-color: #fff;
   padding: 25px 30px;
@@ -27,6 +28,13 @@ body{
   font-size: 25px;
   font-weight: 500;
   position: relative;
+}
+
+small{
+  color: #f80404;
+  margin-bottom: 5px;
+
+  float: left;
 }
 .container .title::before{
   content: "";

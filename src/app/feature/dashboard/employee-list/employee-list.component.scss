@@ -21,7 +21,7 @@ $primary-color: #f36d2a;
   /*Attendance List serction  */
   .attendance{
     margin-top: 20px;
-    text-transform: capitalize;
+    text-transform: lowercase;
   }
   .attendance-list{
     width: 100%;
@@ -83,4 +83,9 @@ $primary-color: #f36d2a;
   border-radius: 5px;
   margin-top: 15px;
   cursor: pointer;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 5px;
 }

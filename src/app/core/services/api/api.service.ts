@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Users } from '../../models/users';
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { postUser } from '../../models/postUser.model';
 import { updateUser } from '../../models/updateUser.model';
 import { LeaveType } from '../../models/leaveType.model';
 import { UpdatePassword } from '../../models/password.interface';
+import { Reporting, ReportingByUser } from '../../models/reporting.model';
 
 
 
@@ -16,9 +17,10 @@ import { UpdatePassword } from '../../models/password.interface';
 export class ApiService {
 
   private baseUrl: string = "https://localhost:7240/api/Users";
-  // private apiUrl: string = "https://localhost:7240/api/Users/add";
+  private apiUrl: string = "https://localhost:7240/api/Users/add";
   private roleUrl: string = "https://localhost:7240/api/Role";
   private leaveUrl: string = "https://localhost:7240/api/LeaveType";
+  private stats: string = "https://localhost:7240/api/LeaveReporting"
 
   constructor(private http: HttpClient) { }
 
@@ -41,7 +43,7 @@ export class ApiService {
 
   //ajouter un utilisateur
   addUserInTable(data: postUser): Observable<postUser>{
-    return this.http.post<postUser>(`${this.baseUrl}/add`, data)
+    return this.http.post<postUser>(`${this.apiUrl}`, data)
   }
 
   //Modifier un utilisateur
@@ -64,6 +66,29 @@ export class ApiService {
   //obtenir tous les congés
    getLeaveType(): Observable<LeaveType[]>{
     return this.http.get<LeaveType[]>(`${this.leaveUrl}`)
+   }
+
+   //obtenir les statistiques de tous les utilisateurs
+   getStatisticOfAllUser(role: string): Observable<Reporting[]> {
+    // Assurez-vous que le rôle est valide (manager ou admin)
+    const validRoles = ['Manager', 'Admin'];
+    if (!validRoles.includes(role)) {
+      throw new Error('Rôle invalide. Le rôle doit être "Manager" ou "Admin".');
+    }
+  
+    // Construire les paramètres de la requête
+    const params = new HttpParams().set('role', role);
+  
+    // Ajouter les paramètres à l'URL
+    const urlWithParams = `${this.stats}?${params.toString()}`;
+  
+    // Faire la requête HTTP
+    return this.http.get<Reporting[]>(urlWithParams);
+  }
+
+    //obtenir les statistiques de tous les utilisateurs
+   getStatisticByUser(id: number):Observable<ReportingByUser>{
+    return this.http.get<ReportingByUser>(`${this.stats}/${id}`)
    }
 
 }

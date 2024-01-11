@@ -27,7 +27,7 @@ export class LoginComponent {
   ngOnInit(): void {
     
     if (this.auth.isLoggedIn()) {
-        this.route.navigate(['dashboard']);
+        this.route.navigate(['dashboard/reporting']);
     }
   }
 
@@ -47,7 +47,7 @@ export class LoginComponent {
         this.token.setUserFromToken(tokenPayload.unique_name);
         this.token.setRoleFromToken(tokenPayload.role);
 
-        this.route.navigate(['dashboard'])
+        this.route.navigate(['dashboard/reporting'])
 
         const Toast = Swal.mixin({
           toast: true,

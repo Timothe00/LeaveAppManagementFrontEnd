@@ -6,6 +6,7 @@ export class postUser {
     password!: string
     phoneNumber!: string
     job!: string
+    totaLeaveAvailable!: number
     isActiveUser!: boolean
     roleId!: number
 }

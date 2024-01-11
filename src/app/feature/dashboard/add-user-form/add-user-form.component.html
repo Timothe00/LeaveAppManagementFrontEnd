@@ -17,7 +17,12 @@
                 </div>
                 <div class="input-box">
                     <span class="details">Contact</span>
-                    <input type="text" formControlName="phoneNumber" placeholder="Entrer le numero de téléphone" required>
+                    <input type="text"
+                     formControlName="phoneNumber" 
+                     placeholder="Entrer le numero de téléphone" 
+                     required
+                     minlength="5"
+                     maxlength="15">
                 </div>
                 <div class="input-box">
                     <span class="details">Poste occupé</span>
@@ -25,7 +30,12 @@
                 </div>
                 <div class="input-box">
                     <span class="details">Mot de passe</span>
-                    <input type="password" formControlName="password" placeholder="Entrer le mot de passe" required>
+                    <input type="password"
+                    formControlName="password" 
+                    placeholder="Entrer le mot de passe" 
+                    required minlength="5"
+                    maxlength="10">
+                    <small *ngIf="currentForm.controls['password'].hasError('required')">*Le mot de passe minimum 5 caractères</small>
                 </div>
                 <div class="input-box">
                     <span class="details">Role Utilisateur</span>
@@ -33,12 +43,16 @@
                         <option *ngFor="let role of roles" [value]="role.id">{{role.roleName}}</option> 
                     </select>
                 </div>
+                <div class="input-box">
+                    <span class="details">Total des jours de congé</span>
+                    <input type="number" formControlName="totaLeaveAvailable" placeholder="Entrer le mot de passe" required>
+                </div>
             </div>
             <div class="gender-details">
                 <input type="radio" formControlName="isActiveUser" name="isActiveUser" id="dot-1" value="true">
                 <input type="radio" formControlName="isActiveUser" name="isActiveUser" id="dot-2" value="false">
                 <span class="gender-title">Compte utilisateur</span>
-                <div class="category">
+                <div class="category" >
                     <label for="dot-1">
                         <span class="dot one"></span>
                         <span class="isActiveUser">Activer</span>
@@ -50,7 +64,7 @@
                 </div>
              </div>
             <div class="button">
-                <input type="submit" (click)="onSubmit()" value="Register">
+                <input type="submit" (click)="onUserCreate()" value="Enregister">
             </div>
         </form>
     </div>

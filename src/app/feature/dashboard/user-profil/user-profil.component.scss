@@ -59,7 +59,7 @@ img {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+h1 {
   font-size: 24px;
   margin-bottom: 5px;
 }
@@ -223,6 +223,7 @@ form .button input:hover {
 
 .elementDiv {
   display: flex;
+  margin-top: 150px;
   justify-content: center;
   align-items: center;
 }
@@ -234,7 +235,9 @@ form .button input:hover {
 .password-input-container {
   position: relative;
 }
-
+.gradienttext{
+  text-align: center;
+}
 .passwordinput {
   padding-right: 30px; /* Ajustez la valeur en fonction de la taille de l'icône */
 }

@@ -6,12 +6,14 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { LeaveResquestListComponent } from './leave-resquest-list/leave-resquest-list.component';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import { LeaveRequestFormComponent } from './leave-request-form/leave-request-form.component';
+import { ReportingComponent } from './reporting/reporting.component';
 
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children:
       [
         { path: 'userProfile', component: UserProfilComponent },
+        { path: 'reporting', component: ReportingComponent },
         { path: 'EmployeeList', component: EmployeeListComponent },
         { path: 'EmployeeList/add', component: AddUserFormComponent },
         { path: 'EmployeeList/edit/:id', component: AddUserFormComponent },

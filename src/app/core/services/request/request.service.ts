@@ -43,7 +43,10 @@ export class RequestService {
     return this.http.put<StatusBody>(url, body);
   }
 
-
+  deleteRequest(id: number){
+    const url = `${this.reqUrl}/${id}`;
+    return this.http.delete(url);
+  }
 
 
 

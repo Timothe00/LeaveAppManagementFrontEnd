@@ -23,7 +23,7 @@ isHidden: boolean = true; // hidden par defaut
 
 fullName!: string;
 role!: string;
-
+userRole!: string;
 passwordVisible = false;
 
 constructor(
@@ -39,6 +39,7 @@ constructor(
   email: new FormControl('', [Validators.required, Validators.email]),
   job: new FormControl('', [Validators.required]),
   phoneNumber: new FormControl('', [Validators.required]),
+  totaLeaveAvailable: new FormControl(1, [Validators.required]),
   roleId: new FormControl(1, [Validators.required]),
   password: new FormControl('', [Validators.minLength(5)]),
   isActiveUser: new FormControl(true, [Validators.required]), 
@@ -48,7 +49,17 @@ constructor(
 
 
 ngOnInit(){
-  const userToken = this.token.getInfoUserToken()
+  
+  const userToken = this.token.getInfoUserToken();
+  const userRole = "Employee";
+  // Condition pour désactiver le champ si le rôle est "Employee"
+  if (userRole === "Employee") {
+    this.userForm.get('totaLeaveAvailable')?.disable();
+  } else {
+    // Assurez-vous de réactiver le champ si le rôle n'est pas "Employee"
+    this.userForm.get('totaLeaveAvailable')?.enable();
+  }
+
   this.getUserById(+userToken.primarysid)
   //this.updatePassword(+userToken.primarysid, this.txt)
   this.userToken.getUserFromToken()
@@ -101,6 +112,7 @@ onSubmit() {
       lastName: this.userForm.value.lastName as string,
       email: this.userForm.value.email as string,
       isActiveUser: true,
+      totaLeaveAvailable: this.userForm.value.totaLeaveAvailable as number,
       phoneNumber: this.userForm.value.phoneNumber as string,
       roleId: this.userForm.value.roleId as number,
       job: this.userForm.value.job as string,

@@ -6,6 +6,7 @@ export class Users {
     password!: string
     phoneNumber!: string
     job!: string
+    totaLeaveAvailable!: number
     isActiveUser!: boolean
     roleId!: number
     roleName!: string

@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeaveRequestFormComponent } from './leave-request-form/leave-request-form.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UserProfilComponent } from './user-profil/user-profil.component';
+import { ReportingComponent } from './reporting/reporting.component';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { UserProfilComponent } from './user-profil/user-profil.component';
     LeaveResquestListComponent, 
     AddUserFormComponent, 
     LeaveRequestFormComponent, 
-    UserProfilComponent
+    UserProfilComponent, ReportingComponent
   ],
   imports: [
     CommonModule,

@@ -1,8 +1,9 @@
-<div class="elementDiv">
+<h1>PARAMETRE DU PROFILE</h1>  
+<div class="elementDiv">   
 <div class="card">
     <div class="left-container">
       <img
-        src="assets/WhatsApp Image 2024-01-03 à 08.39.41_d06b93a3.jpg"
+        src="assets/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg"
         alt="Profile Image"
       />
       <h2 class="gradienttext">{{fullName}}</h2>
@@ -42,7 +43,10 @@
                       </span>
                     </div>
                 </div>
-                  
+                <div class="input-box" [hidden]="isHidden">
+                    <span class="details">Total des jours de congé</span>
+                    <input type="number" formControlName="totaLeaveAvailable" placeholder="" required>
+                </div>
                 <div class="input-box" [hidden]="isHidden">
                     <span class="details">Role Utilisateur</span>
                     <!-- <select name="" id="" formControlName="roleId" readonly>
