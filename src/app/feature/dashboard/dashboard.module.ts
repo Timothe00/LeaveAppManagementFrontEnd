@@ -14,6 +14,8 @@ import { LeaveRequestFormComponent } from './leave-request-form/leave-request-fo
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UserProfilComponent } from './user-profil/user-profil.component';
 import { ReportingComponent } from './reporting/reporting.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { RequestDetailsComponent } from './request-details/request-details.component';
 
 
 @NgModule({
@@ -24,7 +26,7 @@ import { ReportingComponent } from './reporting/reporting.component';
     LeaveResquestListComponent, 
     AddUserFormComponent, 
     LeaveRequestFormComponent, 
-    UserProfilComponent, ReportingComponent
+    UserProfilComponent, ReportingComponent, UserDetailComponent, RequestDetailsComponent
   ],
   imports: [
     CommonModule,

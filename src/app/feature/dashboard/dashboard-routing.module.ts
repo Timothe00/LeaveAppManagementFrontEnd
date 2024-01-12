@@ -7,16 +7,18 @@ import { LeaveResquestListComponent } from './leave-resquest-list/leave-resquest
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import { LeaveRequestFormComponent } from './leave-request-form/leave-request-form.component';
 import { ReportingComponent } from './reporting/reporting.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children:
       [
-        { path: 'userProfile', component: UserProfilComponent },
-        { path: 'reporting', component: ReportingComponent },
+        { path: 'reporting', component: ReportingComponent },  
+        { path: 'userProfile', component: UserProfilComponent },  
         { path: 'EmployeeList', component: EmployeeListComponent },
         { path: 'EmployeeList/add', component: AddUserFormComponent },
-        { path: 'EmployeeList/edit/:id', component: AddUserFormComponent },
+        { path: 'user-detail/details/:id', component: UserDetailComponent }, 
+        { path: 'EmployeeList/edit/:id', component: AddUserFormComponent },   
         { path: 'LeaveResquestList', component: LeaveResquestListComponent },
         { path: 'leave-request-form/add', component: LeaveRequestFormComponent },
         { path: 'leave-request-form/edit/:id', component: LeaveRequestFormComponent }, 

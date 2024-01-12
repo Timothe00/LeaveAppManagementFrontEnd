@@ -3,6 +3,7 @@
     <h1 *ngIf="role === 'Employee'">LISTE DE MES DEMANDES EFFECTUEES</h1>
     <section class="attendance">
         <div class="attendance-list">
+                
             <table class="table">
                 <thead>
                     <tr>
@@ -18,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor=" let req of request"> 
+                    <tr *ngFor=" let req of request" [hidden]="req.requestStatus=='Accepted'||req.requestStatus==='Rejected'"> 
                         <!-- [hidden]="req.requestStatus=='Accepted'||req.requestStatus==='Rejected'" -->
                         <td>{{req.firstName}} {{req.lastName}}</td>
                         <td>{{req.dateRequest|date}}</td>
@@ -31,7 +32,8 @@
                         <td *ngIf="role === 'Employee'">
                             <button (click)="onClikToUpdate(req.id)"
                              [disabled]="req.requestStatus==='Accepted'||req.requestStatus==='Rejected'">Modifier</button>
-                             <button (click)="onClikToDelete(req.id)">Supprimer</button>
+                             <button
+                             [disabled]="req.requestStatus==='Accepted'" (click)="onClikToDelete(req.id)">Supprimer</button>
                         </td>
                         <td *ngIf="role === 'Manager'">
                             <button (click)="updateStatus(req.id, 'Accepted')">Accepter</button>

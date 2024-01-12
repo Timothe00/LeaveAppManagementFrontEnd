@@ -77,4 +77,8 @@ export class EmployeeListComponent {
     this.router.navigate([`dashboard/EmployeeList/edit/${id}`]);
   }
 
+  clikTodetail(idUser: number){
+    this.router.navigate([`dashboard/user-detail/details/${idUser}`]);
+  }
+
 }

@@ -2,8 +2,8 @@
     <h1>LISTE DES EMPLOYES</h1>
     <section class="attendance">
         <div class="attendance-list">
-            
             <button class="addClass" routerLink="add">Ajouter un utilisateur</button>
+            <app-request-details></app-request-details>
             <table class="table">
                 <thead>
                     <tr>
@@ -26,6 +26,8 @@
                         <td>{{item.isActiveUser}}</td>
                         <td>
                             <button (click)="onUpdate(item.id)">Modifier</button>
+                            <button (click)="clikTodetail(item.id)">Détails</button>
+                            <button class="primary" onclick="window.dialog.showModal();">Détails</button>
                             <button (click)="onDelete(item.id)">Supprimer</button>
                         </td>
                     </tr>

@@ -39,8 +39,6 @@ export class LeaveResquestListComponent {
         this.role = value || roleFromToken
       })
   }
-
-
   getUserById(id: number) {
     this.apiUser.getUserByIdIntable(id)
       .subscribe(
@@ -59,16 +57,13 @@ export class LeaveResquestListComponent {
   filterRequestsByUserRole(requests: LeaveRequest[]): LeaveRequest[] {
     // Récupérer le rôle de l'utilisateur connecté
     const userRole = this.role;
-
     // Si l'utilisateur a le rôle de manager, renvoyer toutes les demandes
     if (userRole === 'Manager') {
       return requests;
     }
-
     // Si l'utilisateur n'est pas un manager, filtrer les demandes pour ne montrer que celles de l'utilisateur connecté
     const userToken = this.token.getInfoUserToken();
     const userId = +userToken.primarysid;
-
     return requests.filter(request => request.employeeId === userId);
   }
 

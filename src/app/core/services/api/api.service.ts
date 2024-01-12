@@ -8,6 +8,7 @@ import { updateUser } from '../../models/updateUser.model';
 import { LeaveType } from '../../models/leaveType.model';
 import { UpdatePassword } from '../../models/password.interface';
 import { Reporting, ReportingByUser } from '../../models/reporting.model';
+import { ReportingBalance } from '../../models/reportingBalance.model';
 
 
 
@@ -17,10 +18,11 @@ import { Reporting, ReportingByUser } from '../../models/reporting.model';
 export class ApiService {
 
   private baseUrl: string = "https://localhost:7240/api/Users";
-  private apiUrl: string = "https://localhost:7240/api/Users/add";
+  // private apiUrl: string = "https://localhost:7240/api/Users/add";
   private roleUrl: string = "https://localhost:7240/api/Role";
   private leaveUrl: string = "https://localhost:7240/api/LeaveType";
   private stats: string = "https://localhost:7240/api/LeaveReporting"
+  private urlBalance: string = "https://localhost:7240/api/LeaveBalance";
 
   constructor(private http: HttpClient) { }
 
@@ -43,7 +45,7 @@ export class ApiService {
 
   //ajouter un utilisateur
   addUserInTable(data: postUser): Observable<postUser>{
-    return this.http.post<postUser>(`${this.apiUrl}`, data)
+    return this.http.post<postUser>(`${this.baseUrl}/add`, data)
   }
 
   //Modifier un utilisateur
@@ -70,7 +72,7 @@ export class ApiService {
 
    //obtenir les statistiques de tous les utilisateurs
    getStatisticOfAllUser(role: string): Observable<Reporting[]> {
-    // Assurez-vous que le rôle est valide (manager ou admin)
+    // on s'assure que le rôle est valide (manager ou admin)
     const validRoles = ['Manager', 'Admin'];
     if (!validRoles.includes(role)) {
       throw new Error('Rôle invalide. Le rôle doit être "Manager" ou "Admin".');
@@ -79,7 +81,7 @@ export class ApiService {
     // Construire les paramètres de la requête
     const params = new HttpParams().set('role', role);
   
-    // Ajouter les paramètres à l'URL
+    // Ajout des paramètres à l'URL
     const urlWithParams = `${this.stats}?${params.toString()}`;
   
     // Faire la requête HTTP
@@ -89,6 +91,11 @@ export class ApiService {
     //obtenir les statistiques de tous les utilisateurs
    getStatisticByUser(id: number):Observable<ReportingByUser>{
     return this.http.get<ReportingByUser>(`${this.stats}/${id}`)
+   }
+
+   //obtenir les statistiques de tous les utilisateurs
+   getReportingBalance(empId: number):Observable<ReportingBalance>{
+    return this.http.get<ReportingBalance>(`${this.urlBalance}?employId=${empId}`)
    }
 
 }

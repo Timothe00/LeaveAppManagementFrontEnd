@@ -29,7 +29,7 @@
         <i class="fas fa-chart-bar"></i>
         <span class="nav-item" *ngIf="role === 'Manager'">Demandes en attentes</span>
         <span class="badge" *ngIf="role === 'Manager'" [hidden]="totalPending == 0">{{totalPending}}</span>
-        <span class="nav-item" *ngIf="role === 'Employee'">Liste de mes demandes</span>
+        <span class="nav-item" *ngIf="role === 'Employee'">Mes demandes en attente</span>
       </a>
     </li>
     <li *ngIf="role === 'Employee'">
@@ -39,15 +39,15 @@
       </a>
     </li>
     <li>
-      <a routerLink="userProfile" routerLinkActive="active">
-        <i class="fas fa-cog"></i>
-        <span class="nav-item">Paramètre du profile</span>
+      <a href="" *ngIf="role === 'Employee'">
+        <i class="fas fa-info" routerLinkActive="active"></i>
+        <span class="nav-item">Mon rapport de congé</span>
       </a>
     </li>
     <li>
-      <a href="">
-        <i class="fas fa-info" routerLinkActive="active"></i>
-        <span class="nav-item">Informations</span>
+      <a routerLink="userProfile" routerLinkActive="active">
+        <i class="fas fa-cog"></i>
+        <span class="nav-item">Paramètre du profile</span>
       </a>
     </li>
     <li>
