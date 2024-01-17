@@ -63,10 +63,6 @@ export class ReportingComponent {
     this.role = value || roleFromToken
   })
 
-  // if (userToken.role === 'Employee') {
-  //   this.isHidden
-  // }
-
  }
 
 
@@ -133,6 +129,6 @@ getUserById(id: number) {
           console.log(err);
         }
       })
-}
+  }
 
 }

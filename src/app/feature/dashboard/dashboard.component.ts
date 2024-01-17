@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Reporting } from 'src/app/core/models/reporting.model';
-import { Users } from 'src/app/core/models/users';
+
 import { ApiService } from 'src/app/core/services/api/api.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { UserInTokenService } from 'src/app/core/services/userInToken/user-in-token.service';

@@ -47,31 +47,22 @@
                     <span class="details">Total des jours de congé</span>
                     <input type="number" formControlName="totaLeaveAvailable" placeholder="" required>
                 </div>
-                <div class="input-box" [hidden]="isHidden">
-                    <span class="details">Role Utilisateur</span>
-                    <!-- <select name="" id="" formControlName="roleId" readonly>
-                        <option *ngFor="let role of roles" [value]="role.id" readonly>{{role.roleName}}</option> 
-                    </select> -->
-                </div>
             </div>
             <div class="gender-details" [hidden]="isHidden">
                 <input type="radio" formControlName="isActiveUser" name="isActiveUser" id="dot-1" value="true" readonly>
                 <input type="radio" formControlName="isActiveUser" name="isActiveUser" id="dot-2" value="false" readonly>
                 <span class="gender-title">Compte utilisateur</span>
                 <div class="category">
-                    <!-- <label for="dot-1">
-                        <span class="dot one"></span>
-                        <span class="isActiveUser">Activer</span>
-                    </label>
-                    <label for="dot-2">
-                        <span class="dot two"></span>
-                        <span class="isActiveUser">Désactiver</span>
-                    </label> -->
+
                 </div>
             </div>
+            <app-password-change></app-password-change>
             <div class="button">
                 <input type="submit" (click)="onSubmit()" value="Register">
-                <input type="submit" (click)="onPasswordChange()" value="Change password">
+                <input type="submit"
+                class="primary" 
+                value="Change password" 
+                onclick="window.dialog.showModal();">
             </div>
         </form>
     </div>

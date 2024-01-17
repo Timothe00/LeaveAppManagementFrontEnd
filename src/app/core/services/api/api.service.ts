@@ -18,7 +18,6 @@ import { ReportingBalance } from '../../models/reportingBalance.model';
 export class ApiService {
 
   private baseUrl: string = "https://localhost:7240/api/Users";
-  // private apiUrl: string = "https://localhost:7240/api/Users/add";
   private roleUrl: string = "https://localhost:7240/api/Role";
   private leaveUrl: string = "https://localhost:7240/api/LeaveType";
   private stats: string = "https://localhost:7240/api/LeaveReporting"

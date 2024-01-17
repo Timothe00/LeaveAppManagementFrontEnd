@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class EmployeeListComponent {
 
   users: Users[] = [];
-  //user!: Users;
+  
   constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {

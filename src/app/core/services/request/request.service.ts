@@ -4,6 +4,7 @@ import { LeaveRequest } from '../../models/leaveRequest.model';
 import { Observable } from 'rxjs';
 import { postLeave } from '../../models/postLeave';
 import { UpdateLeave } from '../../models/updateLeave.model';
+import { AllReqAccpted } from '../../models/allReqAccepted.model';
 
 export interface StatusBody {
   id: number
@@ -17,6 +18,7 @@ export interface StatusBody {
 export class RequestService {
 
   private reqUrl: string ='https://localhost:7240/api/LeaveRequest'
+  private req: string = 'https://localhost:7240/api/AllRequestAccepted'
 
   constructor(private http: HttpClient) { }
 
@@ -47,6 +49,11 @@ export class RequestService {
     const url = `${this.reqUrl}/${id}`;
     return this.http.delete(url);
   }
+
+ //obtenir toutes le requêtes qui sont acceptées
+ getAllReqsAccept(){
+  return this.http.get<AllReqAccpted[]>(this.req)
+ }
 
 
 

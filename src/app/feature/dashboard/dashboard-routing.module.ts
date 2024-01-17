@@ -8,6 +8,7 @@ import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import { LeaveRequestFormComponent } from './leave-request-form/leave-request-form.component';
 import { ReportingComponent } from './reporting/reporting.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { PasswordChangeComponent } from './password-change/password-change.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
         { path: 'EmployeeList/edit/:id', component: AddUserFormComponent },   
         { path: 'LeaveResquestList', component: LeaveResquestListComponent },
         { path: 'leave-request-form/add', component: LeaveRequestFormComponent },
+        {path: 'password-change', component: PasswordChangeComponent},
         { path: 'leave-request-form/edit/:id', component: LeaveRequestFormComponent }, 
       ]
   },

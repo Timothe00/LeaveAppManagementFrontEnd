@@ -16,6 +16,9 @@ import { UserProfilComponent } from './user-profil/user-profil.component';
 import { ReportingComponent } from './reporting/reporting.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { RequestDetailsComponent } from './request-details/request-details.component';
+import { PasswordChangeComponent } from './password-change/password-change.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { LeaveCalendarComponent } from './leave-calendar/leave-calendar.component';
 
 
 @NgModule({
@@ -26,7 +29,12 @@ import { RequestDetailsComponent } from './request-details/request-details.compo
     LeaveResquestListComponent, 
     AddUserFormComponent, 
     LeaveRequestFormComponent, 
-    UserProfilComponent, ReportingComponent, UserDetailComponent, RequestDetailsComponent
+    UserProfilComponent, 
+    ReportingComponent, 
+    UserDetailComponent, 
+    RequestDetailsComponent, 
+    PasswordChangeComponent, 
+    LeaveCalendarComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +42,8 @@ import { RequestDetailsComponent } from './request-details/request-details.compo
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    FullCalendarModule
     //CoreModule
   ]
 })
