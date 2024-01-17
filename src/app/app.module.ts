@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
-import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 
@@ -18,8 +17,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    FullCalendarModule
+    HttpClientModule
   ],
   providers: [
     {

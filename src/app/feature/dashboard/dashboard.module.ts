@@ -44,7 +44,6 @@ import { LeaveCalendarComponent } from './leave-calendar/leave-calendar.componen
     HttpClientModule,
     SharedModule,
     FullCalendarModule
-    //CoreModule
   ]
 })
 export class DashboardModule { }

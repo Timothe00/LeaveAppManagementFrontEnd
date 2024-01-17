@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/core';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,5 +7,4 @@ import { CalendarOptions } from '@fullcalendar/core';
 })
 export class AppComponent {
   title = 'LeaveAppManagementFrontEnd';
-  calendarOptions!: CalendarOptions;
 }
