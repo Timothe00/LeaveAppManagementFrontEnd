@@ -21,20 +21,18 @@
                      formControlName="phoneNumber" 
                      placeholder="Entrer le numero de téléphone" 
                      required
-                     minlength="5"
-                     maxlength="15">
+                     maxlength="10">
                 </div>
                 <div class="input-box">
                     <span class="details">Poste occupé</span>
                     <input type="text" formControlName="job" placeholder="Entrer le poste occupé" required>
                 </div>
-                <div class="input-box">
+                <div class="input-box" [hidden]="isUpdate">
                     <span class="details">Mot de passe</span>
                     <input type="password"
                     formControlName="password" 
                     placeholder="Entrer le mot de passe" 
-                    required minlength="5"
-                    maxlength="10">
+                    required minlength="5">
                     <small *ngIf="currentForm.controls['password'].hasError('required')">*Le mot de passe minimum 5 caractères</small>
                 </div>
                 <div class="input-box">

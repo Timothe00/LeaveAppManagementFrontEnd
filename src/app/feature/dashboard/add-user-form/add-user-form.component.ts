@@ -46,7 +46,7 @@ export class AddUserFormComponent {
     totaLeaveAvailable: new FormControl(30, [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required]),
     roleId: new FormControl(1, [Validators.required]),
-    password: new FormControl('', [Validators.required]),
+    password: new FormControl(null),
     isActiveUser: new FormControl(true, [Validators.required]), 
   });
 
@@ -99,21 +99,23 @@ export class AddUserFormComponent {
       email: this.updateUserForm.value.email as string,
       totaLeaveAvailable: this.updateUserForm.value.totaLeaveAvailable as number,
       isActiveUser: true,
-      password: this.updateUserForm.value.password as string,
       phoneNumber: this.updateUserForm.value.phoneNumber as string,
       roleId: this.updateUserForm.value.roleId as number,
       job: this.updateUserForm.value.job as string,
     };
-  
-    this.api.UpdateUserInTable(userId, updateUser).subscribe({
-      next: (response: any) => {
-        console.log('Mise à jour utilisateur', response);
-        // Gérer la confirmation de mise à jour
-      },
-      error: (err: any) => {
-        console.error('Erreur lors de la mise à jour de l\'utilisateur', err);
-        // Gérer l'erreur de mise à jour
-      },
+
+    Swal.fire({
+      title: "Vous êtes sur le point d'apporter des modifications sur cet utilisateur",
+      icon: "warning",
+      showDenyButton: true,
+      denyButtonText: `Stopper`,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Créer!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.updateUser(userId, updateUser);
+      }
     });
   }
   
@@ -145,7 +147,7 @@ export class AddUserFormComponent {
     });
   }
   
-  
+  //fonction la creation d'un utilisateur
   private createUser(postUser: postUser): void {
     this.api.addUserInTable(postUser).subscribe({
       next: (response: postUser) => {
@@ -157,7 +159,24 @@ export class AddUserFormComponent {
       },
     });
   }
+
+  //methode pour mettre à jour un utilisateur
+  private updateUser(userId:number, updateUser:updateUser ){
+      this.api.UpdateUserInTable(userId, updateUser).subscribe({
+      next: (response: any) => {
+        console.log('Mise à jour utilisateur', response);
+        // Gérer la confirmation de mise à jour
+        this.handleUserUpdateSuccess();
+      },
+      error: (err: any) => {
+        console.error('Erreur lors de la mise à jour de l\'utilisateur', err);
+        // Gérer l'erreur de mise à jour
+        this.handleUserUpdateError();
+      },
+    });
+  }
   
+  //fonction pour afficher un message que la création a été effectuée avec succes
   private handleUserCreationSuccess(): void {
     Swal.fire({
       title: "Créé",
@@ -166,7 +185,7 @@ export class AddUserFormComponent {
     });
     this.router.navigate(['dashboard/EmployeeList']);
   }
-  
+  //fonction pour afficher un message d'erreur en cas d'echec lors de la création
   private handleUserCreationError(): void {
     Swal.fire({
       title: "Erreur!",
@@ -175,6 +194,22 @@ export class AddUserFormComponent {
     });
   }
 
-  
-}
+  //fonction pour afficher un message quand la mise à jour a été effectuée avec succes
+    private handleUserUpdateSuccess(): void {
+    Swal.fire({
+      title: "Créé",
+      text: "Mise à jour éffectuée avec succès",
+      icon: "success",
+    });
+    this.router.navigate(['dashboard/EmployeeList']);
+  }
 
+    //fonction pour afficher un message d'erreur en cas d'echec lors de la création
+    private handleUserUpdateError(): void {
+      Swal.fire({
+        title: "Erreur!",
+        text: "Une erreur s'est produite lors de la mise à jour de l'utilisateur.",
+        icon: "error",
+      });
+    } 
+}

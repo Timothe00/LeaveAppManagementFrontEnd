@@ -4,7 +4,6 @@ export class updateUser {
     firstName!: string
     lastName!: string
     email!: string
-    password?: string
     phoneNumber!: string
     totaLeaveAvailable!: number
     job!: string

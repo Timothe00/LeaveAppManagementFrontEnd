@@ -1,6 +1,6 @@
 export interface AllReqAccpted {
     start: string
-    // end: Date
-    // title: string
+    end: string
+    title: string
     userName: string
   }

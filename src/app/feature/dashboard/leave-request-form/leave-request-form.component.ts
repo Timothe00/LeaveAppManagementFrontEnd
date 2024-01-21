@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { LeaveRequest } from 'src/app/core/models/leaveRequest.model';
+import {FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LeaveType } from 'src/app/core/models/leaveType.model';
 import { postLeave } from 'src/app/core/models/postLeave';
 import { UpdateLeave } from 'src/app/core/models/updateLeave.model';
 import { ApiService } from 'src/app/core/services/api/api.service';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { UserInTokenService } from 'src/app/core/services/userInToken/user-in-token.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-leave-request-form',
@@ -36,9 +35,11 @@ export class LeaveRequestFormComponent {
     status: new FormControl([Validators.required]),
   });
 
-  constructor(private req: RequestService,
+  constructor(
+    private req: RequestService,
     private userToken: UserInTokenService,
     private api: ApiService,
+    private router: Router,
     private route: ActivatedRoute) { }
 
     
@@ -110,9 +111,19 @@ export class LeaveRequestFormComponent {
         this.req.updateRequestInTable(leavId, updateLeave).subscribe({
           next: (response: any) => {
             console.log('Mise à jour de la demande', response);
+            Swal.fire({
+              title: "Super!",
+              text: "Modification éffectuée avec succès!",
+              icon: "success"
+            });
           },
           error: (err: any) => {
             console.error('Erreur lors de l\'ajout de la demande', err);
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Erreur lors de la modification"
+            });
           }
         });
       } else {
@@ -124,16 +135,24 @@ export class LeaveRequestFormComponent {
           employeeId: this.addLeaveForm.value.primarysId,
           requestStatus: this.addLeaveForm.value.status,
           leaveTypeId: this.addLeaveForm.value.leaveId
-        }
-
-        console.log("result", reqst);
-        
+        }      
         this.req.addRequestInTable(reqst).subscribe({
           next: (response: any) => {
             console.log('Ajout demande', response);
+            Swal.fire({
+              title: "Super!",
+              text: "Demande éffectuée avec succès!",
+              icon: "success"
+            });
+            this.router.navigate(['dashboard/LeaveResquestList']);
           },
           error: (err: any) => {
             console.error('Erreur lors de l\'ajout de la demande', err);
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Erreur lors de l'ajout de la demande"
+            });
           }
         });
       }
