@@ -56,13 +56,11 @@
 
                 </div>
             </div>
-            <app-password-change></app-password-change>
             <div class="button">
                 <input type="submit" (click)="onSubmit()" value="Register">
-                <input type="submit"
+                <input type="submit" (click)="onPasswordChange()"
                 class="primary" 
-                value="Change password" 
-                onclick="window.dialog.showModal();">
+                value="Nouveau Mot de passe">
             </div>
         </form>
     </div>

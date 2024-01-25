@@ -51,7 +51,7 @@ constructor(
 ngOnInit(){
   
   const userToken = this.token.getInfoUserToken();
-  const userRole = "Employee";
+  const userRole = userToken.role;
   // Condition pour désactiver le champ si le rôle est "Employee"
   if (userRole === "Employee") {
     this.userForm.get('totaLeaveAvailable')?.disable();

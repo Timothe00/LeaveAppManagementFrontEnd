@@ -1,0 +1,13 @@
+<app-password-forgot></app-password-forgot>
+<div class="wrapper">
+  <img src="assets/infi_software_logo.jpeg" alt="infi-logo">
+  <h1>Réinitialiser <br>votre mot de passe!</h1>
+  <form [formGroup]="ResetPasswordForm">
+    <input type="password" placeholder="Entrez le nouveau Mot de passe" formControlName="password" required/>
+    <small *ngIf="ResetPasswordForm.controls['password'].hasError('required')">*Nouveau Mot de passe requis </small>
+    <input type="password" placeholder="Confirmer le nouveau mot de passe" formControlName="confirmPassword" />
+    <small *ngIf="ResetPasswordForm.controls['password'].dirty && ResetPasswordForm.hasError('required')">*Le mot de passe de confirmation est requis</small>
+    <small *ngIf="ResetPasswordForm.hasError('confirmPasswordValidator', 'confirmPassword')">*le mot de passe ne correspond pas</small>
+  </form>
+  <button (click)="reset()">Réinitialiser</button>
+</div>

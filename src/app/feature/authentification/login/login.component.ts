@@ -60,7 +60,6 @@ export class LoginComponent {
           icon: "success",
           title: "Connecté avec succès"
         });
- 
       }, 
       error:()=>{
         const Toast = Swal.mixin({

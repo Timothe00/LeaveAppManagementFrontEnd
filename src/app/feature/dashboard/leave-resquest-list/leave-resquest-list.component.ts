@@ -20,6 +20,10 @@ export class LeaveResquestListComponent {
   user!: Users;
   role!: string;
 
+  page: number = 1;
+  itemsPerPage: number=6;
+  totalRequest: any;
+
   constructor(
     private api: RequestService,
     private apiUser: ApiService,
@@ -74,6 +78,7 @@ export class LeaveResquestListComponent {
         next: (res: LeaveRequest[]) => {
           // Filtrer les demandes en fonction du rôle de l'utilisateur connecté
           this.request = this.filterRequestsByUserRole(res);
+          this.totalRequest = res.length;
           console.log('response', this.request);
         },
         error: (err: any) => {
@@ -122,16 +127,6 @@ export class LeaveResquestListComponent {
       }
     });
   }
-    // this.api.updateRequestStatus(body).subscribe({
-    //   next: (response: StatusBody) => {
-    //     console.log(response);
-    //   },
-    //   error: (error: any) => {
-    //     console.error('Erreur lors de la mise à jour du statut', error);
-    //   }
-    // });
-
-
 
 
   getStatus(status: string): string {

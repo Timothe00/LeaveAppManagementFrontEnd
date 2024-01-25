@@ -12,7 +12,11 @@ import Swal from 'sweetalert2';
 export class EmployeeListComponent {
 
   users: Users[] = [];
+  page: number = 1;
+  itemsPerPage: number=5;
+  totalUser: any;
   
+  searchText: any;
   constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
@@ -25,6 +29,7 @@ export class EmployeeListComponent {
       .subscribe({
         next: (res: Users[]) => {
           this.users = res;
+          this.totalUser = res.length;
           console.log(res);
         },
         error: (err: any) => {

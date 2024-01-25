@@ -53,6 +53,7 @@ export class RequestService {
  //obtenir toutes le requêtes qui sont acceptées
  getAllReqsAccept(){
   return this.http.get<AllReqAccpted[]>(this.req)
+  
  }
 
 

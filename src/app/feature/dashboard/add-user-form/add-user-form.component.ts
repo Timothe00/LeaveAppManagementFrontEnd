@@ -51,10 +51,8 @@ export class AddUserFormComponent {
   });
 
   ngOnInit(): void {
-
     const userId = this.route.snapshot.params['id'];
     this.isUpdate = !!userId;
-
     if (this.isUpdate) {
       this.currentForm = this.updateUserForm;
       this.getUserById(userId);

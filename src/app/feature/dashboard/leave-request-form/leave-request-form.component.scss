@@ -173,3 +173,9 @@ form .user-details .input-box{
     flex-direction: column;
   }
 }
+
+@media screen and (min-width: 1200px) {
+  .mainContainer{
+    margin-top: 10rem;
+  }
+}

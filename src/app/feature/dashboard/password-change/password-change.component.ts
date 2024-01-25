@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UpdatePassword } from 'src/app/core/models/password.interface';
+import { Users } from 'src/app/core/models/users';
 import { ApiService } from 'src/app/core/services/api/api.service';
+import { UserInTokenService } from 'src/app/core/services/userInToken/user-in-token.service';
 
 @Component({
   selector: 'app-password-change',
@@ -9,49 +11,54 @@ import { ApiService } from 'src/app/core/services/api/api.service';
   styleUrls: ['./password-change.component.scss'],
 })
 export class PasswordChangeComponent {
+  user!: Users;
 
   pwChangeForm = new FormGroup({
-    id: new FormControl(), 
-    current:  new FormControl('', [Validators.minLength(5)]),
-    newPW: new FormControl('', [Validators.minLength(5)]),
-    confirm: new FormControl('', [Validators.minLength(5)]),
+    id: new FormControl(),
+    newPassword: new FormControl('', [Validators.minLength(5)]),
   });
 
-  constructor(private api: ApiService, private fb: FormBuilder) {}
+  constructor(private api: ApiService, private token: UserInTokenService) {}
 
   ngOnInit() {
-    // this.pwChangeForm = this.fb.group({
-    //     current: ['', Validators.required],
-    //     newPW: ['', Validators.required],
-    //     confirm: ['', Validators.required]
-    // });
-    // this.current = this.pwChangeForm.controls['current'];
-    // this.newPW = this.pwChangeForm.controls['newPW'];
-    // this.confirm = this.pwChangeForm.controls['confirm'];
-}
+    const userToken = this.token.getInfoUserToken();
+    this.getUserById(+userToken.primarysid);
+  }
 
-changePassword() {
-  if (this.pwChangeForm.controls.newPW.value == this.pwChangeForm.controls.confirm.value) {
-    const userId = this.pwChangeForm.value.id;
-    const newPassword: UpdatePassword = {
-      id: userId,
-      password: this.pwChangeForm.value.current as string
-    }
-  
-    this.api.updateUserPassword(newPassword).subscribe({
-      next: (response: UpdatePassword) => {
-        console.log('Mise à jour mot de passe', response);
+  getUserById(id: number) {
+    this.api.getUserByIdIntable(id).subscribe({
+      next: (user: any) => {
+        this.user = user;
+        // Mettez à jour la valeur de id dans le formulaire
+        this.pwChangeForm.patchValue({ id: user.id });
       },
       error: (err: any) => {
-        console.error('Erreur lors de la mise à jour de l\'utilisateur', err);
-      }
+        console.log(err);
+      },
     });
- }else{
-  console.log("error password incorrect");
- }
+  }
 
+  changePassword() {
+    if (this.pwChangeForm.valid) {
+      const userId = this.pwChangeForm.value.id;
+      const newPassword: UpdatePassword = {
+        id: userId,
+        password: this.pwChangeForm.value.newPassword as string,
+      };
+
+      this.api.updateUserPassword(newPassword).subscribe({
+        next: (response: UpdatePassword) => {
+          console.log('Mise à jour mot de passe', response);
+        },
+        error: (err: any) => {
+          console.error('Erreur lors de la mise à jour de l\'utilisateur', err);
+        },
+      });
+    } else {
+      console.log('Mot de passe incorrect ou non valide');
+    }
+  }
 }
 
-}
 
 

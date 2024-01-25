@@ -41,9 +41,6 @@ export class LeaveRequestFormComponent {
     private api: ApiService,
     private router: Router,
     private route: ActivatedRoute) { }
-
-    
-
     
 
   ngOnInit(): void {

@@ -1,3 +1,4 @@
+<app-password-forgot></app-password-forgot>
 <div class="wrapper">
   <img src="assets/infi_software_logo.jpeg" alt="infi-logo">
   <h1>Bonjour à nouveau!</h1>
@@ -12,9 +13,9 @@
 
     <input type="password" placeholder="Password" formControlName="password" />
     <small *ngIf="profileForm.controls['password'].hasError('required')">*Le mot de passe est requis</small>
-
+    
     <p class="recover">
-      <a href="#">Changer de mot de passe?</a>
+      <a onclick="window.dialog.showModal();">Mot de passe oublié?</a>
     </p>
   </form>
   <button (click)="onSubmit()">se connecter</button>

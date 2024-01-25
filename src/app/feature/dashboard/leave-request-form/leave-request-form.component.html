@@ -1,47 +1,49 @@
-<div class="container">
-    <div class="title">Nouvelle demande</div>
-    <div class="content">
-        <form [formGroup]="currentForm">
-            <div class="user-details">
-                <div class="input-box">
-                    <span class="details">Date début du congé</span>
-                    <input type="date" formControlName="dateStart" placeholder="Entrer le nom" required>
+<div class="mainContainer">
+    <div class="container">
+        <div class="title">Nouvelle demande</div>
+        <div class="content">
+            <form [formGroup]="currentForm">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Date début du congé</span>
+                        <input type="date" formControlName="dateStart" placeholder="Entrer le nom" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Date fin du congé</span>
+                        <input type="date" formControlName="dateEnd" placeholder="Entrer le Prénoms" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Type de Congé</span>
+                        <select name="" id="" formControlName="leaveId">
+                            <option *ngFor="let leave of leaves" [value]="leave.id">{{leave.leaveTypeName}}</option>
+                        </select>
+                    </div>
+    
+                    <div class="input-box">
+                        <span class="details">Laisse un commentaire</span>
+                        <textarea formControlName="commentary" id="" cols="30" rows="10"></textarea>
+                    </div>
+    
+                    <div class="input-box">
+                        <span class="details">Demande éffectuée le:</span>
+                        <input type="date" formControlName="dateRequest" required>
+                    </div>
+    
+                    <div class="input-box" [hidden]="isHidden">
+                        <span class="details">primarysId</span>
+                        <input type="text" formControlName="primarysId" value={{this.primarysId}} readonly>
+                    </div>
+    
+                    <div class="input-box" [hidden]="isHidden">
+                        <span class="details">Status de la demande</span>
+                        <input type="text" formControlName="status" value="En attente" readonly>
+                    </div>
                 </div>
-                <div class="input-box">
-                    <span class="details">Date fin du congé</span>
-                    <input type="date" formControlName="dateEnd" placeholder="Entrer le Prénoms" required>
+                <div class="button">
+                    <input type="submit" (click)="onSubmit()" value="Envoyer">
                 </div>
-                <div class="input-box">
-                    <span class="details">Type de Congé</span>
-                    <select name="" id="" formControlName="leaveId">
-                        <option *ngFor="let leave of leaves" [value]="leave.id">{{leave.leaveTypeName}}</option>
-                    </select>
-                </div>
-
-                <div class="input-box">
-                    <span class="details">Laisse un commentaire</span>
-                    <textarea formControlName="commentary" id="" cols="30" rows="10"></textarea>
-                </div>
-
-                <div class="input-box">
-                    <span class="details">Demande éffectuée le:</span>
-                    <input type="date" formControlName="dateRequest" required>
-                </div>
-
-                <div class="input-box" [hidden]="isHidden">
-                    <span class="details">primarysId</span>
-                    <input type="text" formControlName="primarysId" value={{this.primarysId}} readonly>
-                </div>
-
-                <div class="input-box" [hidden]="isHidden">
-                    <span class="details">Status de la demande</span>
-                    <input type="text" formControlName="status" value="En attente" readonly>
-                </div>
-            </div>
-            <div class="button">
-                <input type="submit" (click)="onSubmit()" value="Envoyer">
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 

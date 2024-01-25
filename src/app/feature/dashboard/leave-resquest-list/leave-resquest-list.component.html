@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor=" let req of request" [hidden]="req.requestStatus=='Accepted'||req.requestStatus==='Rejected'"> 
+                    <tr *ngFor=" let req of request| paginate: { itemsPerPage: 5, currentPage: page}"> 
                         <!-- [hidden]="req.requestStatus=='Accepted'||req.requestStatus==='Rejected'" -->
                         <td>{{req.firstName}} {{req.lastName}}</td>
                         <td>{{req.dateRequest|date}}</td>
@@ -42,6 +42,10 @@
                     </tr>
                 </tbody>
             </table>
+
+            <div>
+                <pagination-controls class="paginate" (pageChange)="page = $event"></pagination-controls>
+            </div>
         </div>
     </section>
 </section>

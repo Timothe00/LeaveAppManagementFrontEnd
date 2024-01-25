@@ -19,6 +19,7 @@ import { RequestDetailsComponent } from './request-details/request-details.compo
 import { PasswordChangeComponent } from './password-change/password-change.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { LeaveCalendarComponent } from './leave-calendar/leave-calendar.component';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { LeaveCalendarComponent } from './leave-calendar/leave-calendar.componen
     FormsModule,
     HttpClientModule,
     SharedModule,
-    FullCalendarModule
+    FullCalendarModule,
+    NgxPaginationModule
   ]
 })
 export class DashboardModule { }

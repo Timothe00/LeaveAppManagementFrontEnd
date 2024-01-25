@@ -1,17 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AllReqAccpted } from 'src/app/core/models/allReqAccepted.model';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { CalendarOptions } from '@fullcalendar/core'; // useful for typechecking
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-leave-calendar',
   templateUrl: './leave-calendar.component.html',
   styleUrls: ['./leave-calendar.component.scss'],
 })
-export class LeaveCalendarComponent {
-  Events: AllReqAccpted[] = [];
+export class LeaveCalendarComponent implements OnInit {
+  
+  events$!: Observable<AllReqAccpted[]>;
+
+  calendarOptions!: CalendarOptions;
 
   constructor(private reqs: RequestService) {}
 
@@ -19,22 +23,22 @@ export class LeaveCalendarComponent {
     alert('date click! ' + arg.dateStr);
   } 
 
-  ngOnInit() {
-    this.reqs.getAllReqsAccept().subscribe(leaveRequests => {
-      leaveRequests.map(event => {
-        const eventObject = {
-          title: event.title,
-          start: this.convertDate(event.start),
-          end: this.convertDate(event.end),
-          userName: event.userName,
-          color: '#0000ff'
-        }
-      this.Events.push(eventObject)
-      });
-      console.log("res", this.Events);
-    });
+  ngOnInit() {  
+    function getRandomColor() {
+      const r = Math.floor(Math.random() * 255);
+      const g = Math.floor(Math.random() * 255);
+      const b = Math.floor(Math.random() * 255);
+      console.log(`rgb(${r}, ${g}, ${b})`);
+      return `rgb(${r}, ${g}, ${b})`;
+    }
 
-    
+    this.events$ = this.reqs.getAllReqsAccept();
+    this.calendarOptions = {
+      plugins: [dayGridPlugin, interactionPlugin],
+      initialView: 'dayGridMonth',
+      eventColor: getRandomColor(),
+      dateClick: this.handleDateClick.bind(this)
+    }
   }
 
   //converDate est une fonction qui convertie le format des dates
@@ -47,12 +51,4 @@ export class LeaveCalendarComponent {
     return formattedDateStr
   }
 
-  calendarOptions: CalendarOptions = {
-    plugins: [dayGridPlugin, interactionPlugin],
-    initialView: 'dayGridMonth',
-    dateClick: this.handleDateClick.bind(this),
-    events: this.Events,
-  };
-
 }
-//good

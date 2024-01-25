@@ -4,3 +4,12 @@
     height: 700px;
     margin: 20px;
 }
+
+
+@media screen and (min-width: 1200px) {
+    .calendar{
+        background: #fff;
+        height: 550px;
+        margin: 20px;
+    }
+}
