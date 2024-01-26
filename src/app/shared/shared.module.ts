@@ -5,10 +5,11 @@ import { SearchfilterPipe } from './searchfilter/searchfilter.pipe';
 
 
 
+
 @NgModule({
   declarations: [
     CutTextPipe,
-    SearchfilterPipe
+    SearchfilterPipe,
   ],
   imports: [
     CommonModule

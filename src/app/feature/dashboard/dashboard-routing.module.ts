@@ -9,12 +9,13 @@ import { LeaveRequestFormComponent } from './leave-request-form/leave-request-fo
 import { ReportingComponent } from './reporting/reporting.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { PasswordChangeComponent } from './password-change/password-change.component';
+import { KpiCardComponent } from './kpi-card/kpi-card.component';
 
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children:
       [
-        { path: 'reporting', component: ReportingComponent },  
+        { path: 'home', component: ReportingComponent },  
         { path: 'userProfile', component: UserProfilComponent },  
         { path: 'EmployeeList', component: EmployeeListComponent },
         { path: 'EmployeeList/add', component: AddUserFormComponent },
@@ -23,7 +24,8 @@ const routes: Routes = [
         { path: 'LeaveResquestList', component: LeaveResquestListComponent },
         { path: 'leave-request-form/add', component: LeaveRequestFormComponent },
         {path: 'password-change', component: PasswordChangeComponent},
-        { path: 'leave-request-form/edit/:id', component: LeaveRequestFormComponent }, 
+        {path: 'reporting', component: KpiCardComponent},
+        {path: 'leave-request-form/edit/:id', component: LeaveRequestFormComponent }, 
       ]
   },
 

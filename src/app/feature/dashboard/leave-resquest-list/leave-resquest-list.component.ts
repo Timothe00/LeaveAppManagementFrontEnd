@@ -24,12 +24,15 @@ export class LeaveResquestListComponent {
   itemsPerPage: number=6;
   totalRequest: any;
 
+  searchText: any;
+
   constructor(
     private api: RequestService,
     private apiUser: ApiService,
     private token: UserInTokenService,
     private auth: AuthService,
-    private router: Router) { }
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
     const userToken = this.token.getInfoUserToken()

@@ -3,7 +3,10 @@
     <h1 *ngIf="role === 'Employee'">LISTE DE MES DEMANDES EFFECTUEES</h1>
     <section class="attendance">
         <div class="attendance-list">
-                
+            <div class="search-box">
+                <button class="btn-search"><i class="fas fa-search"></i></button>
+                <input type="text" [(ngModel)]="searchText" class="input-search" placeholder="Recherchez ici...">
+            </div>
             <table class="table">
                 <thead>
                     <tr>
@@ -19,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor=" let req of request| paginate: { itemsPerPage: 5, currentPage: page}"> 
+                    <tr *ngFor=" let req of request| paginate: { itemsPerPage: 5, currentPage: page} | searchfilter: searchText"> 
                         <!-- [hidden]="req.requestStatus=='Accepted'||req.requestStatus==='Rejected'" -->
                         <td>{{req.firstName}} {{req.lastName}}</td>
                         <td>{{req.dateRequest|date}}</td>
