@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ResetPasswordService } from 'src/app/core/services/resetPassword/reset-password.service';
 import Swal from 'sweetalert2';
 
@@ -12,7 +13,7 @@ export class PasswordForgotComponent {
   public resetPasswordEmail!: string;
   public isValidEmail!: boolean;
 
-  constructor(private reset: ResetPasswordService) {}
+  constructor(private reset: ResetPasswordService, private route: Router) {}
 
 
   checkValidEmail(event: string){
@@ -41,6 +42,7 @@ export class PasswordForgotComponent {
             icon: "success",
             title: "Super! veuiller consulter votre boîte e-mail"
           });
+          this.route.navigate(['login']);
         },
         error:(err)=>{
           const Toast = Swal.mixin({

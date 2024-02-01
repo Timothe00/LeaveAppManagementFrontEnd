@@ -72,11 +72,18 @@ export class LeaveRequestFormComponent {
       dateEnd: new FormControl(new Date, [Validators.required]),
       leaveId: new FormControl(0, [Validators.required]),
       commentary: new FormControl('', [Validators.required]),
-      dateRequest: new FormControl(new Date, [Validators.required]),
+      dateRequest: new FormControl([this.getDateString(new Date())]),
       primarysId: new FormControl(this.primarysId,[Validators.required]),
       leaveTypeId: new FormControl([Validators.required]),
       status: new FormControl('En attente', [Validators.required]),
     });
+  }
+
+  getDateString(date: Date): string {
+    const year = date.getFullYear();
+    const month = `${date.getMonth() + 1}`.padStart(2, '0');
+    const day = `${date.getDate()}`.padStart(2, '0');
+    return `${day}/${month}/${year}`;
   }
 
 
