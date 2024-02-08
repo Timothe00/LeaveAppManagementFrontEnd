@@ -42,7 +42,7 @@ constructor(
   totaLeaveAvailable: new FormControl(1, [Validators.required]),
   roleId: new FormControl(1, [Validators.required]),
   password: new FormControl('', [Validators.minLength(5)]),
-  isActiveUser: new FormControl(true, [Validators.required]), 
+  hireDate: new FormControl(new Date, [Validators.required]),
 });
 
 
@@ -111,11 +111,11 @@ onSubmit() {
       firstName: this.userForm.value.firstName as string,
       lastName: this.userForm.value.lastName as string,
       email: this.userForm.value.email as string,
-      isActiveUser: true,
-      totaLeaveAvailable: this.userForm.value.totaLeaveAvailable as number,
+      //totaLeaveAvailable: this.userForm.value.totaLeaveAvailable as number,
       phoneNumber: this.userForm.value.phoneNumber as string,
       roleId: this.userForm.value.roleId as number,
       job: this.userForm.value.job as string,
+      hireDate: this.userForm.value.hireDate as Date
     };
  
     this.api.UpdateUserInTable(userId, updateUser).subscribe({

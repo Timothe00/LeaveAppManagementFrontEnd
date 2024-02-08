@@ -30,10 +30,10 @@ export class AddUserFormComponent {
     job: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phoneNumber: new FormControl('', [Validators.required]),
+    hireDate: new FormControl(new Date(), [Validators.required]),
     totaLeaveAvailable: new FormControl(30, [Validators.required]),
     roleId: new FormControl(1, [Validators.required]),
     password: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    isActiveUser: new FormControl(true, [Validators.required]),
   });
 
 
@@ -43,11 +43,11 @@ export class AddUserFormComponent {
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     job: new FormControl('', [Validators.required]),
-    totaLeaveAvailable: new FormControl(30, [Validators.required]),
+    hireDate: new FormControl(new Date(), [Validators.required]),
+    //totaLeaveAvailable: new FormControl(0, [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required]),
     roleId: new FormControl(1, [Validators.required]),
     password: new FormControl(null),
-    isActiveUser: new FormControl(true, [Validators.required]), 
   });
 
   ngOnInit(): void {
@@ -95,11 +95,12 @@ export class AddUserFormComponent {
       firstName: this.updateUserForm.value.firstName as string,
       lastName: this.updateUserForm.value.lastName as string,
       email: this.updateUserForm.value.email as string,
-      totaLeaveAvailable: this.updateUserForm.value.totaLeaveAvailable as number,
-      isActiveUser: true,
+      //totaLeaveAvailable: this.updateUserForm.value.totaLeaveAvailable as number,
+      hireDate: this.updateUserForm.value.hireDate as Date,
       phoneNumber: this.updateUserForm.value.phoneNumber as string,
       roleId: this.updateUserForm.value.roleId as number,
       job: this.updateUserForm.value.job as string,
+      
     };
 
     Swal.fire({
@@ -122,8 +123,8 @@ export class AddUserFormComponent {
       firstName: this.addUserForm.value.firstName as string,
       lastName: this.addUserForm.value.lastName as string,
       email: this.addUserForm.value.email as string,
-      totaLeaveAvailable: this.addUserForm.value.totaLeaveAvailable as number,
-      isActiveUser: true,
+      //totaLeaveAvailable: this.addUserForm.value.totaLeaveAvailable as number,
+      hireDate: this.updateUserForm.value.hireDate as Date,
       password: this.addUserForm.value.password as string,
       phoneNumber: this.addUserForm.value.phoneNumber as string,
       roleId: this.addUserForm.value.roleId as number,

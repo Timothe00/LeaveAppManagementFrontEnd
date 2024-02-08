@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 import { LeaveRequest } from 'src/app/core/models/leaveRequest.model';
 import { Users } from 'src/app/core/models/users';
 import { ApiService } from 'src/app/core/services/api/api.service';
@@ -184,6 +185,20 @@ export class LeaveResquestListComponent {
           });
       }
     });
+  }
+
+
+  onExport() {
+    this.api.exportToExcel().pipe(
+      tap(res => {
+        const blob: Blob = res.body as Blob;
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.download = "Rapport_" + new Date().getDate() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear();
+        a.href = url;
+        a.click();
+      })
+    ).subscribe();
   }
 
 }

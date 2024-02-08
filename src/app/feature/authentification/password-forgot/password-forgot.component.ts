@@ -20,7 +20,6 @@ export class PasswordForgotComponent {
     const value = event;
     const pattern=/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
     this.isValidEmail = pattern.test(value)
-
     return this.isValidEmail
   }
 

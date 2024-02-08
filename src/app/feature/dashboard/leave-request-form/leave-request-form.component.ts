@@ -30,7 +30,7 @@ export class LeaveRequestFormComponent {
     dateEnd: new FormControl(new Date, [Validators.required]),
     leaveId: new FormControl(0, [Validators.required]),
     commentary: new FormControl('', [Validators.required]),
-    dateRequest: new FormControl(new Date, [Validators.required]),
+    dateRequest: new FormControl(this.getDateString(new Date()), [Validators.required]),
     primarysId: new FormControl([Validators.required]),
     status: new FormControl([Validators.required]),
   });
@@ -68,11 +68,11 @@ export class LeaveRequestFormComponent {
 
   initForm(){
     this.addLeaveForm  = new FormGroup({
+      dateRequest: new FormControl(this.getDateString(new Date())),
       dateStart: new FormControl(new Date, [Validators.required]),
       dateEnd: new FormControl(new Date, [Validators.required]),
       leaveId: new FormControl(0, [Validators.required]),
       commentary: new FormControl('', [Validators.required]),
-      dateRequest: new FormControl([this.getDateString(new Date())]),
       primarysId: new FormControl(this.primarysId,[Validators.required]),
       leaveTypeId: new FormControl([Validators.required]),
       status: new FormControl('En attente', [Validators.required]),
@@ -105,7 +105,7 @@ export class LeaveRequestFormComponent {
         const leavId = this.currentForm.value.id;
         const updateLeave: UpdateLeave = {
           id: leavId,
-          dateRequest: this.updateLeaveForm.value.dateRequest! ,
+          dateRequest: this.updateLeaveForm.value.dateRequest!,
           dateStart: this.updateLeaveForm.value.dateStart!,
           dateEnd: this.updateLeaveForm.value.dateEnd!,
           commentary: this.updateLeaveForm.value.commentary!,
@@ -148,6 +148,7 @@ export class LeaveRequestFormComponent {
               text: "Demande éffectuée avec succès!",
               icon: "success"
             });
+            
             this.router.navigate(['dashboard/LeaveResquestList']);
           },
           error: (err: any) => {

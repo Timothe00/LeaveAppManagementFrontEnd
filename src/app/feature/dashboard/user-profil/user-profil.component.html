@@ -1,11 +1,8 @@
-<h1>PARAMETRE DU PROFILE</h1>  
-<div class="elementDiv">   
-<div class="card">
+<h1>PARAMETRE DU PROFILE</h1>
+<div class="elementDiv">
+  <div class="card">
     <div class="left-container">
-      <img
-        src="assets/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg"
-        alt="Profile Image"
-      />
+      <img src="assets/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg" alt="Profile Image" />
       <h2 class="gradienttext">{{fullName}}</h2>
       <p>Web Developer</p>
     </div>
@@ -13,57 +10,54 @@
       <div class="title">Mon Profile</div>
       <div class="content">
         <form [formGroup]="userForm">
-            <div class="user-details">
-                <div class="input-box">
-                    <span class="details">Nom</span>
-                    <input type="text" formControlName="firstName" placeholder="Entrer le nom" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Prénoms</span>
-                    <input type="text" formControlName="lastName" placeholder="Entrer le Prénoms" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Email</span>
-                    <input type="email" formControlName="email" placeholder="Entrer l'email" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Contact</span>
-                    <input type="text" formControlName="phoneNumber" placeholder="Entrer le numero de téléphone" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Poste occupé</span>
-                    <input type="text" formControlName="job" placeholder="Entrer le poste occupé" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Changer le mot de passe?</span>
-                    <div class="password-input-container">
-                      <input class="passwordinput" type="{{ passwordVisible ? 'text' : 'password' }}" formControlName="password" id="password" required />
-                      <span class="password-toggle-icon" (click)="togglePasswordVisibility()">
-                        <i class="fas" [ngClass]="{ 'fa-eye-slash': !passwordVisible, 'fa-eye': passwordVisible }"></i>
-                      </span>
-                    </div>
-                </div>
-                <div class="input-box" [hidden]="isHidden">
-                    <span class="details">Total des jours de congé</span>
-                    <input type="number" formControlName="totaLeaveAvailable" placeholder="" required>
-                </div>
+          <div class="user-details">
+            <div class="input-box">
+              <span class="details">Nom</span>
+              <input type="text" formControlName="firstName" placeholder="Entrer le nom" required>
             </div>
-            <div class="gender-details" [hidden]="isHidden">
-                <input type="radio" formControlName="isActiveUser" name="isActiveUser" id="dot-1" value="true" readonly>
-                <input type="radio" formControlName="isActiveUser" name="isActiveUser" id="dot-2" value="false" readonly>
-                <span class="gender-title">Compte utilisateur</span>
-                <div class="category">
+            <div class="input-box">
+              <span class="details">Prénoms</span>
+              <input type="text" formControlName="lastName" placeholder="Entrer le Prénoms" required>
+            </div>
+            <div class="input-box">
+              <span class="details">Email</span>
+              <input type="email" formControlName="email" placeholder="Entrer l'email" required>
+            </div>
+            <div class="input-box">
+              <span class="details">Contact</span>
+              <input type="text" formControlName="phoneNumber" placeholder="Entrer le numero de téléphone" required>
+            </div>
+            <div class="input-box">
+              <span class="details">Poste occupé</span>
+              <input type="text" formControlName="job" placeholder="Entrer le poste occupé" required>
+            </div>
+            <div class="input-box">
+              <span class="details">Changer le mot de passe?</span>
+              <div class="password-input-container">
+                <input class="passwordinput" type="{{ passwordVisible ? 'text' : 'password' }}"
+                  formControlName="password" id="password" required />
+                <span class="password-toggle-icon" (click)="togglePasswordVisibility()">
+                  <i class="fas" [ngClass]="{ 'fa-eye-slash': !passwordVisible, 'fa-eye': passwordVisible }"></i>
+                </span>
+              </div>
+            </div>
 
-                </div>
+            <div class="input-box">
+              <span class="details">Date d'embauche</span>
+              <input type="date" formControlName="hireDate" placeholder="Entrer le nom" required>
             </div>
-            <div class="button">
-                <input type="submit" (click)="onSubmit()" value="Register">
-                <input type="submit" (click)="onPasswordChange()"
-                class="primary" 
-                value="Nouveau Mot de passe">
+
+            <div class="input-box" [hidden]="isHidden">
+              <span class="details">Total des jours de congé</span>
+              <input type="number" formControlName="totaLeaveAvailable" placeholder="" required>
             </div>
+          </div>
+          <div class="button">
+            <input type="submit" (click)="onSubmit()" value="Enregistrer">
+            <input type="submit" (click)="onPasswordChange()" class="primary" value="Nouveau Mot de passe">
+          </div>
         </form>
+      </div>
     </div>
   </div>
-  </div>   
 </div>

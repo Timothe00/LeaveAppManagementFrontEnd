@@ -68,7 +68,7 @@ export class ResetComponent implements OnInit {
             icon: "success",
             title: "Réinitialisé avec succès"
           });
-          this.root.navigate(['dashboard/login']);
+          this.root.navigate(['auth/login']);
         },
         error:(err)=>{
           const Toast = Swal.mixin({

@@ -41,26 +41,15 @@
                         <option *ngFor="let role of roles" [value]="role.id">{{role.roleName}}</option> 
                     </select>
                 </div>
-                <div class="input-box">
+                <!-- <div class="input-box">
                     <span class="details">Total des jours de congé</span>
                     <input type="number" formControlName="totaLeaveAvailable" placeholder="Entrer le mot de passe" required>
+                </div> -->
+                <div class="input-box">
+                    <span class="details">Date d'embauche</span>
+                    <input type="date" formControlName="hireDate" placeholder="Entrer le nom" required>
                 </div>
             </div>
-            <div class="gender-details">
-                <input type="radio" formControlName="isActiveUser" name="isActiveUser" id="dot-1" value="true">
-                <input type="radio" formControlName="isActiveUser" name="isActiveUser" id="dot-2" value="false">
-                <span class="gender-title">Compte utilisateur</span>
-                <div class="category" >
-                    <label for="dot-1">
-                        <span class="dot one"></span>
-                        <span class="isActiveUser">Activer</span>
-                    </label>
-                    <label for="dot-2">
-                        <span class="dot two"></span>
-                        <span class="isActiveUser">Désactiver</span>
-                    </label>
-                </div>
-             </div>
             <div class="button">
                 <input type="submit" (click)="onUserCreate()" value="Enregister">
             </div>

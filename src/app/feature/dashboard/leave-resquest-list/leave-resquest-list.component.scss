@@ -64,6 +64,7 @@ $primary-color: #f36d2a;
   .table tbody tr:last-of-type{
     border-bottom: 2px solid #df460fda;
   }
+
   .table button{
     padding: 6px 20px;
     border-radius: 10px;
@@ -72,6 +73,7 @@ $primary-color: #f36d2a;
     background: transparent;
     border: 1px solid #df460fda;
   }
+
   .table button:hover{
     background: #df460fda;
     color: #fff;
@@ -83,7 +85,6 @@ $primary-color: #f36d2a;
   color: #fff;
   padding: 7px 15px;
   border-radius: 5px;
-  margin-top: 15px;
   cursor: pointer;
 }
 
@@ -195,6 +196,13 @@ h1 {
   background-color: #3085d6;
   border-radius: 25px;
 }
+
+.search-boxs{
+  float: right;
+  position: relative;
+  bottom: 25px;
+}
+
 .input-search{
   height: 50px;
   width: 50px;

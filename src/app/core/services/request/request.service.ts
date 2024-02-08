@@ -56,6 +56,10 @@ export class RequestService {
   
  }
 
+ //exporter les données en excel
+ exportToExcel(){
+  return this.http.get('https://localhost:7240/api/ExportToExcel', { observe: 'response', responseType: 'blob'});
+ }
 
 
   

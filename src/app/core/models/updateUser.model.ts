@@ -5,8 +5,8 @@ export class updateUser {
     lastName!: string
     email!: string
     phoneNumber!: string
-    totaLeaveAvailable!: number
+    // totaLeaveAvailable!: number
     job!: string
-    isActiveUser!: boolean
+    hireDate!: Date
     roleId!: number
 }
