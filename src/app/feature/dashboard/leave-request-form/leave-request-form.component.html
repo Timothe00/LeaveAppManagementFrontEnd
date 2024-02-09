@@ -26,15 +26,15 @@
     
                     <div class="input-box">
                         <span class="details">Demande éffectuée le:</span>
-                        <input type="text" formControlName="dateRequest" required>
+                        <input type="text" formControlName="dateRequest" required readonly>
                     </div>
     
-                    <div class="input-box" [hidden]="isHidden">
+                    <div class="input-box" *ngIf="role === 'Admin'">
                         <span class="details">primarysId</span>
                         <input type="text" formControlName="primarysId" value={{this.primarysId}} readonly>
                     </div>
     
-                    <div class="input-box" [hidden]="isHidden">
+                    <div class="input-box" *ngIf="role === 'Admin'">
                         <span class="details">Status de la demande</span>
                         <input type="text" formControlName="status" value="En attente" readonly>
                     </div>

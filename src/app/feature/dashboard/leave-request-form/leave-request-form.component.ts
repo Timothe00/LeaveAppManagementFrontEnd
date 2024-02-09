@@ -5,6 +5,7 @@ import { LeaveType } from 'src/app/core/models/leaveType.model';
 import { postLeave } from 'src/app/core/models/postLeave';
 import { UpdateLeave } from 'src/app/core/models/updateLeave.model';
 import { ApiService } from 'src/app/core/services/api/api.service';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { RequestService } from 'src/app/core/services/request/request.service';
 import { UserInTokenService } from 'src/app/core/services/userInToken/user-in-token.service';
 import Swal from 'sweetalert2';
@@ -21,6 +22,8 @@ export class LeaveRequestFormComponent {
   isHidden: boolean = true; // hidden par defaut
   currentForm!: FormGroup;
   isUpdate: boolean= false;
+
+  role!: string;
 
   addLeaveForm!: FormGroup
   
@@ -40,17 +43,19 @@ export class LeaveRequestFormComponent {
     private userToken: UserInTokenService,
     private api: ApiService,
     private router: Router,
+    private auth: AuthService,
     private route: ActivatedRoute) { }
     
 
   ngOnInit(): void {
     const user = this.userToken.getInfoUserToken();
     this.primarysId = user.primarysid
-
     this.initForm()
-
-    console.log("res", this.primarysId);
-    
+    this.userToken.getUserRoleFromToken()
+    .subscribe(value =>{
+      const roleFromToken = this.auth.getRoleInToken();
+      this.role = value|| roleFromToken
+    })
     const leavId = this.route.snapshot.params['id'];
     this.isUpdate = !!leavId;
 
