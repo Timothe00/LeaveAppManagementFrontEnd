@@ -7,7 +7,7 @@
                 <button class="btn-search"><i class="fas fa-search"></i></button>
                 <input type="text" [(ngModel)]="searchText" class="input-search" placeholder="Recherchez ici...">
             </div>
-            <div class="search-boxs" *ngIf="role === 'Manager'||'Admin'">
+            <div class="search-boxs" *ngIf="role === 'Manager'">
                 <button class="addClass" (click)="onExport()">Export Excel</button>
             </div>
             <table class="table">
@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor=" let req of request| paginate: { itemsPerPage: 5, currentPage: page} | searchfilter: searchText">
+                    <tr *ngFor=" let req of request| paginate: { itemsPerPage: itemsPerPage, currentPage: page} | searchfilter: searchText">
                         <td>{{req.firstName}} {{req.lastName}}</td>
                         <td>{{req.dateRequest|date}}</td>
                         <td>{{req.leaveTypeName}}</td>

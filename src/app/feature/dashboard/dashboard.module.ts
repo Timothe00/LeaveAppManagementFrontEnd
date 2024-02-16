@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -21,6 +21,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { LeaveCalendarComponent } from './leave-calendar/leave-calendar.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { KpiCardComponent } from './kpi-card/kpi-card.component'; // <-- import the module
+import * as fr from '@angular/common/locales/fr';
 
 
 @NgModule({
@@ -47,6 +48,13 @@ import { KpiCardComponent } from './kpi-card/kpi-card.component'; // <-- import 
     SharedModule,
     FullCalendarModule,
     NgxPaginationModule
-  ]
+  ],  
+  providers: [
+    { provide: LOCALE_ID, useValue: 'fr-FR'}
+  ],
 })
-export class DashboardModule { }
+export class DashboardModule {
+  constructor() {
+    registerLocaleData(fr.default);
+  }
+ }

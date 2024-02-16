@@ -17,42 +17,42 @@ export interface StatusBody {
 })
 export class RequestService {
 
-  private reqUrl: string ='https://localhost:7240/api/LeaveRequest'
-  private req: string = 'https://localhost:7240/api/AllRequestAccepted'
+  private reqUrl: string ='https://localhost:7240/api'
+  //private req: string = 'https://localhost:7240/api/AllRequestAccepted'
 
   constructor(private http: HttpClient) { }
 
 
   getAllRequestInTable(): Observable<LeaveRequest[]>{
-    return this.http.get<LeaveRequest[]>(this.reqUrl); 
+    return this.http.get<LeaveRequest[]>(`${this.reqUrl}/LeaveRequest`); 
   }
 
   getRequestByIdInTable(id: number){
-    const urlId= `${this.reqUrl}/${id}`;
+    const urlId= `${this.reqUrl}/LeaveRequest/${id}`;
     return this.http.get(urlId);
   }
 
   addRequestInTable(data: postLeave): Observable<postLeave>{
-    return this.http.post<postLeave>(this.reqUrl, data)
+    return this.http.post<postLeave>(`${this.reqUrl}/LeaveRequest`, data)
   }
 
   updateRequestInTable(id: number, data: UpdateLeave): Observable<UpdateLeave>{
-    return this.http.put<UpdateLeave>(`${this.reqUrl}/${id}`, data)
+    return this.http.put<UpdateLeave>(`${this.reqUrl}/LeaveRequest/${id}`, data)
   }
 
   updateRequestStatus(body: StatusBody): Observable<StatusBody> {
-    const url = `${this.reqUrl}/status`;
+    const url = `${this.reqUrl}/LeaveRequest/status`;
     return this.http.put<StatusBody>(url, body);
   }
 
   deleteRequest(id: number){
-    const url = `${this.reqUrl}/${id}`;
+    const url = `${this.reqUrl}/LeaveRequest/${id}`;
     return this.http.delete(url);
   }
 
  //obtenir toutes le requêtes qui sont acceptées
  getAllReqsAccept(){
-  return this.http.get<AllReqAccpted[]>(this.req)
+  return this.http.get<AllReqAccpted[]>(`${this.reqUrl}/AllRequestAccepted`)
   
  }
 

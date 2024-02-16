@@ -1,6 +1,6 @@
 
 export interface postLeave {
-    dateRequest: string
+    dateRequest: Date
     dateStart: Date
     dateEnd: Date
     commentary: string

@@ -1,6 +1,6 @@
 export class UpdateLeave {
     id!: number
-    dateRequest!: string
+    dateRequest!: Date
     dateStart!: Date
     dateEnd!: Date
     commentary!: string

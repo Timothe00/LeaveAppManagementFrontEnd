@@ -33,7 +33,7 @@ export class LeaveRequestFormComponent {
     dateEnd: new FormControl(new Date, [Validators.required]),
     leaveId: new FormControl(0, [Validators.required]),
     commentary: new FormControl('', [Validators.required]),
-    dateRequest: new FormControl(this.getDateString(new Date()), [Validators.required]),
+    dateRequest: new FormControl(new Date(), [Validators.required]),
     primarysId: new FormControl([Validators.required]),
     status: new FormControl([Validators.required]),
   });
@@ -72,9 +72,10 @@ export class LeaveRequestFormComponent {
   }
 
   initForm(){
+
     this.addLeaveForm  = new FormGroup({
-      dateRequest: new FormControl(this.getDateString(new Date())),
-      dateStart: new FormControl(new Date, [Validators.required]),
+      dateRequest: new FormControl(new Date(), [Validators.required]),
+      dateStart: new FormControl(this.getDateString(new Date()), [Validators.required]),
       dateEnd: new FormControl(new Date, [Validators.required]),
       leaveId: new FormControl(0, [Validators.required]),
       commentary: new FormControl('', [Validators.required]),

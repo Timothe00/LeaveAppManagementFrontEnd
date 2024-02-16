@@ -14,7 +14,7 @@
                         <th>Email</th>
                         <th>poste occupé</th>
                         <th>Contact</th>
-                        <th>Role</th>
+                        <th>Jours de congé</th>
                         <th>Date d'embauche</th>
                         <th>Actions</th>
                     </tr>
@@ -25,8 +25,8 @@
                         <td>{{item.email}}</td>
                         <td>{{item.job}}</td>
                         <td>{{item.phoneNumber}}</td>
-                        <td>{{item.roleName}}</td>
-                        <td>{{item.hireDate|date}}</td>
+                        <td>{{item.totaLeaveAvailable}} jours</td>
+                        <td>{{item.hireDate|date:'le d MMMM yyyy'}}</td>
                         <td>
                             <button (click)="onUpdate(item.id)">Modifier</button>
                             <button (click)="clikTodetail(item.id)">Détails</button>

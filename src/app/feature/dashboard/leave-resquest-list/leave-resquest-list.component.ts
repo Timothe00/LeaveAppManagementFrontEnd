@@ -22,7 +22,7 @@ export class LeaveResquestListComponent {
   role!: string;
 
   page: number = 1;
-  itemsPerPage: number=6;
+  itemsPerPage: number=5;
   totalRequest: any;
 
   searchText: any;
@@ -40,7 +40,6 @@ export class LeaveResquestListComponent {
     this.getUserById(+userToken.primarysid)
 
     this.getAllRequest();
-
     this.token.getUserRoleFromToken()
       .subscribe(value => {
         const roleFromToken = this.auth.getRoleInToken();
@@ -59,9 +58,8 @@ export class LeaveResquestListComponent {
           }
         })
   }
-
-
   
+ 
   filterRequestsByUserRole(requests: LeaveRequest[]): LeaveRequest[] {
     // Récupérer le rôle de l'utilisateur connecté
     const userRole = this.role;
@@ -80,10 +78,13 @@ export class LeaveResquestListComponent {
     this.api.getAllRequestInTable()
       .subscribe({
         next: (res: LeaveRequest[]) => {
+
+          console.log("response ", res);
+          
           // Filtrer les demandes en fonction du rôle de l'utilisateur connecté
           this.request = this.filterRequestsByUserRole(res);
-          this.totalRequest = res.length;
-          console.log('response', this.request);
+          this.totalRequest = this.request.length;
+          console.log('response', this.totalRequest);
         },
         error: (err: any) => {
           console.log(err);
@@ -91,8 +92,7 @@ export class LeaveResquestListComponent {
       });
   }
 
-
-
+  
   updateStatus(id: number, status: string): void {
     const body: StatusBody = {
       id,

@@ -38,7 +38,6 @@ export class EmployeeListComponent {
       });
   }
 
-
   onDelete(id: number): void {
     Swal.fire({
       title: "Etes-vous sûr?",
