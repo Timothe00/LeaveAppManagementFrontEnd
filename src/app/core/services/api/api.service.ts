@@ -18,10 +18,6 @@ import { ReportingBalance } from '../../models/reportingBalance.model';
 export class ApiService {
 
   private baseUrl: string = "https://localhost:7240/api";
-  // private roleUrl: string = "https://localhost:7240/api/Role";
-  // private leaveUrl: string = "https://localhost:7240/api/LeaveType";
-  // private stats: string = "https://localhost:7240/api/LeaveReporting"
-  // private urlBalance: string = "https://localhost:7240/api/LeaveBalance";
 
   constructor(private http: HttpClient) { }
 
@@ -78,6 +74,16 @@ export class ApiService {
     return this.http.get<LeaveType[]>(`${this.baseUrl}/LeaveType`)
    }
 
+    //Ajouter des types de congés
+  addLeaveType(data: LeaveType): Observable<LeaveType>{
+    return this.http.post<LeaveType>(`${this.baseUrl}/LeaveType/add`, data)
+  }
+
+  deleteLeaveType(id: number){
+    const urlDelete= `${this.baseUrl}/LeaveType/${id}`;
+    return this.http.delete(urlDelete);
+  }
+
    //obtenir les statistiques de tous les utilisateurs
    getStatisticOfAllUser(role: string): Observable<Reporting[]> {
     // on s'assure que le rôle est valide (manager ou admin)
@@ -106,7 +112,6 @@ export class ApiService {
     return this.http.get<ReportingBalance>(`${this.baseUrl}/LeaveBalance?employId=${empId}`)
    }
 
-
    private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An error occurred';
     if (error.error instanceof ErrorEvent) {
@@ -117,5 +122,8 @@ export class ApiService {
     console.error(errorMessage);
     return throwError(errorMessage);
   }
+
+
+
 }
 

@@ -1,46 +1,45 @@
 <div class="mainContainer">
     <div class="container">
-        <div class="title">Nouvelle demande</div>
+        <h1 class="title">Nouvelle demande</h1>
         <div class="content">
             <form [formGroup]="currentForm">
                 <div class="user-details">
                     <div class="input-box">
-                        <span class="details">Date début du congé</span>
+                        <span class="details">Date début du congé<span class="errorMessage">{{getRequiredMessage("commentary")}}</span></span>
                         <input type="date" formControlName="dateStart" placeholder="Entrer le nom" required>
+                        <small>{{getErrorMessage("dateStart")}}</small>
                     </div>
                     <div class="input-box">
-                        <span class="details">Date fin du congé</span>
+                        <span class="details">Date fin du congé<span class="errorMessage">{{getRequiredMessage("commentary")}}</span></span>
                         <input type="date" formControlName="dateEnd" placeholder="Entrer le Prénoms" required>
                     </div>
                     <div class="input-box">
-                        <span class="details">Type de Congé</span>
+                        <span class="details">Type de Congé<span class="errorMessage">{{getRequiredMessage("commentary")}}</span></span>
                         <select name="" id="" formControlName="leaveId">
                             <option *ngFor="let leave of leaves" [value]="leave.id">{{leave.leaveTypeName}}</option>
                         </select>
                     </div>
-    
                     <div class="input-box">
-                        <span class="details">Laisse un commentaire</span>
+                        <span class="details">Laisse un commentaire<span class="errorMessage">{{getRequiredMessage("commentary")}}</span></span>
                         <textarea formControlName="commentary" id="" cols="30" rows="10"></textarea>
+                        <small>{{getErrorMessage("commentary")}}</small>
                     </div>
-    
                     <div class="input-box">
-                        <span class="details">Demande éffectuée le:</span>
+                        <span class="details">Demande éffectuée le:<span class="errorMessage">{{getRequiredMessage("commentary")}}</span></span>
                         <input type="date" formControlName="dateRequest" required>
                     </div>
-    
                     <div class="input-box" *ngIf="role === 'Admin'">
                         <span class="details">primarysId</span>
                         <input type="text" formControlName="primarysId" value={{this.primarysId}} readonly>
                     </div>
-    
                     <div class="input-box" *ngIf="role === 'Admin'">
-                        <span class="details">Status de la demande</span>
+                        <span class="details">Status de la demande<span class="errorMessage">{{getRequiredMessage("commentary")}}</span></span>
                         <input type="text" formControlName="status" value="En attente" readonly>
                     </div>
                 </div>
                 <div class="button">
-                    <input type="submit" (click)="onSubmit()" value="Envoyer">
+                    <input type="submit" [ngClass]="currentForm.valid ? 'btnHover' : ''" [disabled]="!currentForm.valid"(click)="onSubmit()" value="Envoyer">
+                    <!--  -->
                 </div>
             </form>
         </div>

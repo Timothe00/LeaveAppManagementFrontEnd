@@ -22,7 +22,7 @@ export class LeaveResquestListComponent {
   role!: string;
 
   page: number = 1;
-  itemsPerPage: number=5;
+  itemsPerPage: number=4;
   totalRequest: any;
 
   searchText: any;

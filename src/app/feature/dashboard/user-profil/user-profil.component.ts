@@ -7,6 +7,7 @@ import { Users } from 'src/app/core/models/users';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { UserInTokenService } from 'src/app/core/services/userInToken/user-in-token.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-profil',
@@ -33,7 +34,7 @@ constructor(
   private token: UserInTokenService,) {}
 
   userForm = new FormGroup({
-  id: new FormControl(),  // Vous pouvez également le désactiver pour qu'il ne soit pas modifiable
+  id: new FormControl(),  
   firstName: new FormControl('', [Validators.required]),
   lastName: new FormControl('', [Validators.required]),
   email: new FormControl('', [Validators.required, Validators.email]),
@@ -44,9 +45,6 @@ constructor(
   password: new FormControl('', [Validators.minLength(5)]),
   hireDate: new FormControl(new Date, [Validators.required]),
 });
-
-
-
 
 ngOnInit(){
   
@@ -101,8 +99,7 @@ updatePassword(id: number, text: string): void {
     }
   });
 }
-
-
+//methode soummission
 onSubmit() {
   if (this.userForm.valid) {
     const userId = this.userForm.value.id;
@@ -111,7 +108,6 @@ onSubmit() {
       firstName: this.userForm.value.firstName as string,
       lastName: this.userForm.value.lastName as string,
       email: this.userForm.value.email as string,
-      //totaLeaveAvailable: this.userForm.value.totaLeaveAvailable as number,
       phoneNumber: this.userForm.value.phoneNumber as string,
       roleId: this.userForm.value.roleId as number,
       job: this.userForm.value.job as string,
@@ -120,10 +116,18 @@ onSubmit() {
  
     this.api.UpdateUserInTable(userId, updateUser).subscribe({
       next: (response: any) => {
-        console.log('Mise à jour utilisateur', response);
+        Swal.fire({
+          title: "Super!",
+          text: "Informations personnelles modifiée avec succès!",
+          icon: "success"
+        });
       },
       error: (err: any) => {
-        console.error('Erreur lors de la mise à jour de l\'utilisateur', err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Erreur lors de la modification"
+        });
       }
     });
   }
@@ -139,17 +143,23 @@ onSubmit() {
  
     this.api.updateUserPassword(newPassword).subscribe({
       next: (response: UpdatePassword) => {
-        console.log('Mise à jour mot de passe', response);
+        Swal.fire({
+          title: "Super!",
+          text: "Modification éffectuée avec succès!",
+          icon: "success"
+        });
       },
       error: (err: any) => {
-        console.error('Erreur lors de la mise à jour de l\'utilisateur', err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Erreur lors de la modification"
+        });
       }
     });
   }
 }
-
-
-
+//gestion de la visibilité du mot de passe
 togglePasswordVisibility() {
   this.passwordVisible = !this.passwordVisible;
 }

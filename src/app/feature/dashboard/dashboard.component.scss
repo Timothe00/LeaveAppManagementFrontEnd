@@ -40,7 +40,7 @@ nav{
   font-weight: bold;
   padding-left: 15px;
   font-size: 18px;
-  text-transform: uppercase;
+  text-transform: lowercase;
 }
 a{
   position: relative;
@@ -103,7 +103,7 @@ a:hover{
 }
 .main-skills .card h3{
   margin: 10px;
-  text-transform: capitalize;
+  text-transform: lowercase;
 }
 .main-skills .card p{
   font-size: 12px;
@@ -128,7 +128,7 @@ a:hover{
 /* Courses */
 .main-course{
   margin-top:20px ;
-  text-transform: capitalize;
+  text-transform: none;
 }
 .course-box{
   width: 100%;

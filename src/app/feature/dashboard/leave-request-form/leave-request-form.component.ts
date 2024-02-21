@@ -72,27 +72,45 @@ export class LeaveRequestFormComponent {
   }
 
   initForm(){
-
     this.addLeaveForm  = new FormGroup({
       dateRequest: new FormControl(new Date(), [Validators.required]),
-      dateStart: new FormControl(this.getDateString(new Date()), [Validators.required]),
+      dateStart: new FormControl(new Date(), [Validators.required]),
       dateEnd: new FormControl(new Date, [Validators.required]),
       leaveId: new FormControl(0, [Validators.required]),
-      commentary: new FormControl('', [Validators.required]),
+      commentary: new FormControl('', [Validators.required, Validators.minLength(5),Validators.maxLength(1000)]),
       primarysId: new FormControl(this.primarysId,[Validators.required]),
       leaveTypeId: new FormControl([Validators.required]),
       status: new FormControl('En attente', [Validators.required]),
     });
   }
 
-  getDateString(date: Date): string {
-    const year = date.getFullYear();
-    const month = `${date.getMonth() + 1}`.padStart(2, '0');
-    const day = `${date.getDate()}`.padStart(2, '0');
-    return `${day}/${month}/${year}`;
+  getErrorMessage(formControlName: string) {
+    const control = this.currentForm.get(formControlName);
+    if (control?.hasError('required') && control?.touched) {
+      return 'Ce champ est obligatoire.';
+    } else if (control?.hasError('maxlength')) {
+      return `Le champ doit contenir 100 caractères maximum.`;
+    }else if (control?.hasError('minlength')) {
+      return `Le champ doit contenir au moins 5 caractères.`;
+    } else {
+      return null;
+    }
   }
 
-
+  getRequiredMessage(formControlName: string) {
+    const control = this.currentForm.get(formControlName);
+    if (control?.hasError('required')) {
+      return '*';
+    } else {
+      return null;
+    }
+  }
+  // getDateString(date: Date): string {
+  //   const year = date.getFullYear();
+  //   const month = `${date.getMonth() + 1}`.padStart(2, '0');
+  //   const day = `${date.getDate()}`.padStart(2, '0');
+  //   return `${day}/${month}/${year}`;
+  // }
   getRequestById(leavId: number): void {
     this.req.getRequestByIdInTable(leavId).subscribe({
       next: (val: any) => {
@@ -169,8 +187,6 @@ export class LeaveRequestFormComponent {
       }
     }
   }
-
-
 }
 
 

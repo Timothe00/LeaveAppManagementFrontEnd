@@ -2,7 +2,7 @@
   <ul>
     <li>
       <a routerLink="home" class="logo">
-        <img src="assets/logo.png" alt="" />
+        <img src="assets/infi_software_logo.jpeg" alt="" />
         <span class="nav-item">DashBoard</span>
       </a>
     </li>
@@ -12,7 +12,6 @@
         <span class="nav-item">Accueil</span>
       </a>
     </li>
-
     <li *ngIf="role === 'Manager'">
       <a routerLink="EmployeeList" routerLinkActive="active">
         <i class="fas fa-users"></i>
@@ -25,6 +24,12 @@
         <span class="nav-item" *ngIf="role === 'Manager'">Demandes en attentes</span>
         <span class="badge" *ngIf="role === 'Manager'" [hidden]="totalPending == 0">{{totalPending}}</span>
         <span class="nav-item" *ngIf="role === 'Employee'">Mes demandes en attente</span>
+      </a>
+    </li>
+    <li *ngIf="role === 'Manager'">
+      <a routerLink="leave-type" class="notification">
+        <i class="fas fa-chart-bar"></i>
+        <span class="nav-item" *ngIf="role === 'Manager'">Ajouter un type de congé</span>
       </a>
     </li>
     <li *ngIf="role === 'Employee'">

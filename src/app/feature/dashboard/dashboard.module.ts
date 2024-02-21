@@ -22,6 +22,7 @@ import { LeaveCalendarComponent } from './leave-calendar/leave-calendar.componen
 import {NgxPaginationModule} from 'ngx-pagination';
 import { KpiCardComponent } from './kpi-card/kpi-card.component'; // <-- import the module
 import * as fr from '@angular/common/locales/fr';
+import { LeaveTypeComponent } from './leave-type/leave-type.component';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import * as fr from '@angular/common/locales/fr';
     UserDetailComponent, 
     RequestDetailsComponent, 
     PasswordChangeComponent, 
-    LeaveCalendarComponent, KpiCardComponent
+    LeaveCalendarComponent, KpiCardComponent, LeaveTypeComponent
   ],
   imports: [
     CommonModule,

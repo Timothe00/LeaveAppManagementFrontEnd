@@ -7,7 +7,7 @@
                 <button class="btn-search"><i class="fas fa-search"></i></button>
                 <input type="text" [(ngModel)]="searchText" class="input-search" placeholder="Recherchez ici...">
             </div>
-            <div class="search-boxs" *ngIf="role === 'Manager'">
+            <div class="search-boxs" *ngIf="role==='Manager'">
                 <button class="addClass" (click)="onExport()">Export Excel</button>
             </div>
             <table class="table">
@@ -32,11 +32,20 @@
                         <td>{{req.dateStart|date}}</td>
                         <td>{{req.dateEnd|date}}</td>
                         <td>{{req.numberOfDays}} jours</td>
-                        <td>{{req.commentary| cutText: 20}}</td>
+                    <td>{{req.commentary| cutText: 20}} 
+                        <div class="popover__wrapper">
+                            <a>
+                                <h2 class="popover__title"><i class="fa fa-chevron-down" aria-hidden="true"></i></h2>
+                            </a>
+                            <div class="popover__content">
+                                <p class="popover__message">{{req.commentary}}</p>
+                            </div>
+                        </div>
+                    </td>
                         <td>{{getStatus(req.requestStatus)}}</td>
                         <td *ngIf="role === 'Employee'">
                             <button (click)="onClikToUpdate(req.id)"
-                             [disabled]="req.requestStatus==='Accepted'||req.requestStatus==='Rejected'">Modifier</button>
+                             [disabled]="req.requestStatus==='Accepted'">Modifier</button>
                              <button
                              [disabled]="req.requestStatus==='Accepted'" (click)="onClikToDelete(req.id)">Supprimer</button>
                         </td>

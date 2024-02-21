@@ -1,0 +1,40 @@
+<dialog id="dialog" class="details">
+    <form [formGroup]="MyLeaveForm">
+        <div class="wrapper">
+            <input type="email" formControlName="leavetype" placeholder="Entrez le type de congé">
+            <button (click)="onSubmit()" class="btn-leavetype">Envoyer</button>
+        </div>
+        <button onclick="window.dialog.close();" aria-label="close" class="x">❌</button>
+    </form>
+</dialog>
+<section class="main">
+    <h1>LA LISTE DES TYPES DE CONGE</h1>
+    <section class="attendance">
+        <div class="attendance-list">
+            <a class="addClass" onclick="window.dialog.showModal();">Ajouter un type de congé</a>
+            <!-- <div class="search-box">
+                <button class="btn-search"><i class="fas fa-search"></i></button>
+                <input type="text" [(ngModel)]="searchText" class="input-search" placeholder="Recherchez ici...">
+            </div> -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Types de congés</th>
+                        <th style="text-align: center;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let leave of leaves | paginate: { itemsPerPage: itemsPerPage, currentPage: page}">
+                        <td>{{leave.leaveTypeName}}</td>
+                        <td style="text-align: center;">
+                            <button (click)="onDelete(leave.id)">Supprimer</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <pagination-controls class="paginate" (pageChange)="page = $event"></pagination-controls>
+            </div>
+        </div>
+    </section>
+</section>

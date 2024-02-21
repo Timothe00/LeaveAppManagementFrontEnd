@@ -8,7 +8,7 @@ import { ResetPassword } from '../../models/resetPassword.model';
 export class ResetPasswordService {
 
   url: string = "https://localhost:7240/api/Users"
-  
+  //environment.apiUr
   constructor(private http: HttpClient) { }
 // reset-password
 

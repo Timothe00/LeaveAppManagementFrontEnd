@@ -1,4 +1,4 @@
 export class LeaveType {
-    id?: number
+    id!: number
     leaveTypeName!: string
   }

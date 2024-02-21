@@ -5,12 +5,10 @@ $primary-color: #f36d2a;
     position: relative;
     padding: 20px;
     width: 100%;
-
   }
   .main-top{
     display: flex;
     width: 100%;
-    
   }
   .main-top i{
     position: absolute;
@@ -22,8 +20,8 @@ $primary-color: #f36d2a;
 
   /*Attendance List serction  */
   .attendance{
-    margin-top: 100px;
-    text-transform: capitalize;
+    margin-top: 20px;
+    text-transform: lowercase;
   }
   .attendance-list{
     width: 100%;
@@ -38,7 +36,7 @@ $primary-color: #f36d2a;
     margin: 25px 0;
     font-size: 15px;
     min-width: 100%;
-    border-radius: 5px 5px 0 0;
+
   }
   table thead tr{
     color: #fff;
@@ -63,7 +61,6 @@ $primary-color: #f36d2a;
   .table tbody tr:last-of-type{
     border-bottom: 2px solid #df460fda;
   }
-
   .table button{
     padding: 6px 20px;
     border-radius: 10px;
@@ -72,7 +69,6 @@ $primary-color: #f36d2a;
     background: transparent;
     border: 1px solid #df460fda;
   }
-
   .table button:hover{
     background: #df460fda;
     color: #fff;
@@ -84,19 +80,13 @@ $primary-color: #f36d2a;
   color: #fff;
   padding: 7px 15px;
   border-radius: 5px;
+  margin-top: 15px;
   cursor: pointer;
 }
 
 h1 {
   font-size: 24px;
   margin-bottom: 5px;
-}
-
-.tronc{
-  width: 200px; /* Définissez la largeur du conteneur en fonction de vos besoins */
-   overflow: hidden;
-   text-overflow: ellipsis;
-   white-space: nowrap;
 }
 
 .paginate{
@@ -194,14 +184,8 @@ h1 {
   position: relative;
   background-color: #3085d6;
   border-radius: 25px;
-}
-
-.search-boxs{
   float: right;
-  position: relative;
-  bottom: 25px;
 }
-
 .input-search{
   height: 50px;
   width: 50px;
@@ -252,62 +236,216 @@ h1 {
   transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
 }
 
-/* Popover styling */
 
-a {
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.popover__title {
-  font-size: 24px;
-  line-height: 36px;
-  text-decoration: none;
-  color: rgb(228, 68, 68);
-  text-align: center;
-  padding: 15px 0;
-}
-
-.popover__wrapper {
-  position: relative;
-  margin-top: 1.5rem;
-  display: inline-block;
-  z-index: 30 !important;
-}
-.popover__content {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  left: -150px;
-  transform: translate(0, 10px);
-  background-color: #bfbfbf;
-  padding: 0.5rem;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  width: 350px;
-}
-.popover__content:before {
-  position: absolute;
-  z-index: -1;
-  content: "";
-  right: calc(50% - 10px);
-  top: -8px;
-  border-style: solid;
-  border-width: 0 10px 10px 10px;
-  border-color: transparent transparent #bfbfbf transparent;
-  transition-duration: 0.3s;
-  transition-property: transform;
+/*Dialog Styles*/
+dialog {
+	padding: 1rem 3rem;
+	background: white;
+	max-width: 750px;
+	padding-top: 2rem;
+	border-radius: 20px;
+	border: 0;
+    margin-left: 35%;  
+    margin-top: 15%;
+	box-shadow: 0 5px 30px 0 rgb(0 0 0 / 10%);
+	animation: fadeIn 1s ease both;
+	&::backdrop {
+		animation: fadeIn 1s ease both;
+		background: rgb(255 255 255 / 40%);
+		z-index: 2;
+		backdrop-filter: blur(0.5px);
+	}
+	.x {
+		filter: grayscale(1);
+		border: none;
+		background: none;
+		position: absolute;
+		width: 20px;
+		top: 0px;
+		transition: ease filter, transform 0.3s;
+		cursor: pointer;
+		transform-origin: center;
+		&:hover {
+			filter: grayscale(0);
+			transform: scale(1.1);
+		}
+	}
 }
 
-.popover__wrapper:hover .popover__content {
-  z-index: 10;
-  opacity: 1;
-  visibility: visible;
-  transform: translate(0, -20px);
-  transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+/*General Styles*/
+
+button.primary {
+	display: inline-block;
+	font-size: 0.8rem;
+	color: #fff !important;
+	background: rgb(var(--vs-primary) / 100%);
+	padding: 13px 25px;
+	border-radius: 17px;
+	transition: background-color 0.1s ease;
+	box-sizing: border-box;
+	transition: all 0.25s ease;
+	border: 0;
+	cursor: pointer;
+	box-shadow: 0 10px 20px -10px rgb(var(--vs-primary) / 50%);
+	&:hover {
+		box-shadow: 0 20px 20px -10px rgb(var(--vs-primary) / 50%);
+		transform: translateY(-5px);
+	}
 }
 
-.popover__message {
-  text-align: left;
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
+
+.wrapper{
+    width: 500px;
+    padding: 2rem 0 1rem 0;
+    background: #fff;
+    border-radius: 10px;
+    text-align: center;
+  }
+  h1{
+    font-size: 2rem;
+    color: #07001f;
+  }
+  input{
+    width: 85%;
+    outline: none;
+    border: none;
+    background: #dfe9f5;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+  .recover{
+    text-align: right;
+    font-size: 0.8rem;
+    margin: 0.2rem 2.5rem 0 0;
+  }
+  
+  .recover{
+    margin-top: 40px;
+  }
+  
+  .recover a{
+    text-decoration: none;
+    color: #07001f;
+  }
+  .btn-leavetype{
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    padding: 8px 0;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    width: 85%;
+    background: #f36d2a;
+    color: #fff;
+    cursor: pointer;
+  }
+  button:hover{
+    background: rgba(122, 30, 30, 0.767);
+  }
+  .or{
+    font-size: 0.8rem;
+    margin-top: 1.5rem;
+  }
+
+// pagination
+
+.paginate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  
+  ::ng-deep{
+    .ngx-pagination{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .ngx-pagination li{
+      width: 35px;
+      height: 35px;
+      border-radius: 50% !important;
+      background: #f8f8f8;
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+  
+      &.small-screen{
+        display: none !important;
+      }
+      
+      &.pagination-previous,
+      &.pagination-next{
+        a,span{
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          overflow: hidden;
+          color: #f8f8f8;
+        }
+      }
+    }
+  
+  
+  
+    .ngx-pagination .pagination-previous a:before,
+    .ngx-pagination .pagination-previous.disabled:before,
+    .ngx-pagination .pagination-next::before{
+      margin-right: 0 !important;
+      font-size: 26px;
+      margin-top: -8px;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      // color: #f36d2a;
+      left: 0;
+      pointer-events: none;
+      // top: 0px;
+    }
+  
+  
+    .ngx-pagination .pagination-next::before{
+      content: '\bb';
+    }
+  
+    .ngx-pagination .pagination-next::after{
+      display: none !important;
+    }
+  
+  
+  
+  
+    .ngx-pagination .pagination-previous.disabled:before{
+      opacity: 0.4;
+    }
+  
+    .ngx-pagination .pagination-previous.disabled:hover{
+      background: #f8f8f8 !important;
+    }
+  
+    .ngx-pagination a:hover,
+    .ngx-pagination button:hover{
+      background: initial !important;
+    }
+  }
+  
 
 

@@ -10,6 +10,7 @@ import { ReportingComponent } from './reporting/reporting.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { PasswordChangeComponent } from './password-change/password-change.component';
 import { KpiCardComponent } from './kpi-card/kpi-card.component';
+import { LeaveTypeComponent } from './leave-type/leave-type.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
         { path: 'leave-request-form/add', component: LeaveRequestFormComponent },
         {path: 'password-change', component: PasswordChangeComponent},
         {path: 'reporting', component: KpiCardComponent},
+        {path: 'leave-type', component: LeaveTypeComponent},
         {path: 'leave-request-form/edit/:id', component: LeaveRequestFormComponent }, 
       ]
   },

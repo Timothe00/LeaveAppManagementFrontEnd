@@ -145,10 +145,23 @@ select{
     transition: all 0.3s ease;
 
   }
- form .button input:hover{
+
+  small{
+    color: #f80404;
+    margin-bottom: 5px;
+    float: left;
+  }
+
+  .errorMessage{
+    color: #f80404;
+  }
+
+ form .button .btnHover:hover{
   /* transform: scale(0.99); */
   background: linear-gradient(-135deg, #71b7e6, #9ec7e1);
   }
+
+
  @media(max-width: 584px){
  .container{
   max-width: 100%;

@@ -123,7 +123,6 @@ export class AddUserFormComponent {
       firstName: this.addUserForm.value.firstName as string,
       lastName: this.addUserForm.value.lastName as string,
       email: this.addUserForm.value.email as string,
-      //totaLeaveAvailable: this.addUserForm.value.totaLeaveAvailable as number,
       hireDate: this.updateUserForm.value.hireDate as Date,
       password: this.addUserForm.value.password as string,
       phoneNumber: this.addUserForm.value.phoneNumber as string,
