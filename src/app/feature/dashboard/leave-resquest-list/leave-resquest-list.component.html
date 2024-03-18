@@ -45,13 +45,13 @@
                         <td>{{getStatus(req.requestStatus)}}</td>
                         <td *ngIf="role === 'Employee'">
                             <button (click)="onClikToUpdate(req.id)"
-                             [disabled]="req.requestStatus==='Accepted'">Modifier</button>
-                             <button
-                             [disabled]="req.requestStatus==='Accepted'" (click)="onClikToDelete(req.id)">Supprimer</button>
+                             [disabled]="req.requestStatus==='Acceptée'">Modifier</button>
+                             <button 
+                             [disabled]="req.requestStatus==='Acceptée'" (click)="onClikToDelete(req.id)">Supprimer</button>
                         </td>
-                        <td *ngIf="role === 'Manager'">
-                            <button (click)="updateStatus(req.id, 'Accepted')">Accepter</button>
-                            <button (click)="updateStatus(req.id, 'Rejected')">Refuser</button>
+                        <td *ngIf="role === 'Manager'||role === 'Admin'">
+                            <button (click)="ConfirmRefuseStatus(req.id, 'Acceptée')">Accepter</button>
+                            <button (click)="ConfirmRefuseStatus(req.id, 'Rejetée')">Refuser</button>
                         </td>
                     </tr>
                 </tbody>

@@ -103,7 +103,7 @@ private confirmAndCreateUser(): void {
           this.api.deleteLeaveType(id)
             .subscribe({
               next: () => {
-                // Mise à jour de la liste des congés après la suppression
+                //Mise à jour de la liste des congés après la suppression
                 this.api.getLeaveType().pipe().subscribe((res) => {
                 this.leaves = res
 

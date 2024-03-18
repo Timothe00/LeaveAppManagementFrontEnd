@@ -29,7 +29,6 @@ export class KpiCardComponent {
     private userToken: UserInTokenService, 
     private auth: AuthService, 
     private api: ApiService,
-    private route: ActivatedRoute
     ) {}
 
     ngOnInit(){

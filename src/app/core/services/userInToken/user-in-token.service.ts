@@ -13,14 +13,12 @@ export interface InfoUserToken {
   iat: number
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
 
 //nous allons identifier l'utilisateur connecté qui dans le token
 export class UserInTokenService {
-
   private primarysId$ = new BehaviorSubject<string>("1");
   private unique_name$ = new BehaviorSubject<string>("");
   private role$ = new BehaviorSubject<string>("");

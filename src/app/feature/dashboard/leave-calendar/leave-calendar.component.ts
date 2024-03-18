@@ -36,6 +36,7 @@ export class LeaveCalendarComponent implements OnInit {
     this.calendarOptions = {
       plugins: [dayGridPlugin, interactionPlugin],
       initialView: 'dayGridMonth',
+      locale: 'fr',
       eventColor: getRandomColor(),
       dateClick: this.handleDateClick.bind(this)
     }

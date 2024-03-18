@@ -18,10 +18,7 @@ export interface StatusBody {
 export class RequestService {
 
   private reqUrl: string ='https://localhost:7240/api'
-  //private req: string = 'https://localhost:7240/api/AllRequestAccepted'
-
   constructor(private http: HttpClient) { }
-
 
   getAllRequestInTable(): Observable<LeaveRequest[]>{
     return this.http.get<LeaveRequest[]>(`${this.reqUrl}/LeaveRequest`); 

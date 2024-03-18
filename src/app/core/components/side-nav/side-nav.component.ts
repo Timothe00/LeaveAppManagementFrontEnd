@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { UserInTokenService } from '../../services/userInToken/user-in-token.service';
 import { ApiService } from '../../services/api/api.service';
 import { Reporting } from '../../models/reporting.model';
+import { NotificationService } from '../../services/notification/notification.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -21,10 +22,14 @@ export class SideNavComponent {
   
   constructor(private userToken: UserInTokenService, 
     private auth: AuthService,
+    private notificationService: NotificationService,
     private api: ApiService) {}
 
   ngOnInit(){
    this.getAllLeaveReports();
+   this.notificationService.notification$.subscribe((count) => {
+   this.totalPending = count;
+  });
    this.userToken.getUserRoleFromToken()
    .subscribe(value =>{
      const roleFromToken = this.auth.getRoleInToken();

@@ -12,35 +12,35 @@
         <span class="nav-item">Accueil</span>
       </a>
     </li>
-    <li *ngIf="role === 'Manager'">
+    <li *ngIf="role === 'Manager'||role==='Admin'">
       <a routerLink="EmployeeList" routerLinkActive="active">
         <i class="fas fa-users"></i>
         <span class="nav-item">Liste des Employés</span>
       </a>
     </li>
-    <li *ngIf="role === 'Manager' || role === 'Employee'">
-      <a routerLink="LeaveResquestList" class="notification">
+    <li *ngIf="role === 'Manager'||role === 'Employee'||role==='Admin'">
+      <a routerLinkActive="active" routerLink="LeaveResquestList" class="notification">
         <i class="fas fa-chart-bar"></i>
-        <span class="nav-item" *ngIf="role === 'Manager'">Demandes en attentes</span>
-        <span class="badge" *ngIf="role === 'Manager'" [hidden]="totalPending == 0">{{totalPending}}</span>
+        <span class="nav-item" *ngIf="role==='Manager'||role==='Admin'">Demandes en attentes</span>
+        <span class="badge" *ngIf="role ==='Manager'" [hidden]="totalPending == 0">{{totalPending}}</span>
         <span class="nav-item" *ngIf="role === 'Employee'">Mes demandes en attente</span>
       </a>
     </li>
     <li *ngIf="role === 'Manager'">
-      <a routerLink="leave-type" class="notification">
-        <i class="fas fa-chart-bar"></i>
-        <span class="nav-item" *ngIf="role === 'Manager'">Ajouter un type de congé</span>
+      <a routerLinkActive="active" routerLink="leave-type" class="notification">
+        <i class="fas fa-plus"></i>
+        <span class="nav-item" *ngIf="role==='Manager'">Ajouter un type de congé</span>
       </a>
     </li>
-    <li *ngIf="role === 'Employee'">
+    <li *ngIf="role === 'Employee'||role==='Manager'">
       <a routerLink="leave-request-form/add" routerLinkActive="active">
         <i class="fas fa-question-circle"></i>
         <span class="nav-item">Effectuer une demande</span>
       </a>
     </li>
     <li>
-      <a routerLink="reporting" *ngIf="role === 'Employee'">
-        <i class="fas fa-info" routerLinkActive="active"></i>
+      <a routerLinkActive="active" routerLink="reporting" *ngIf="role === 'Employee'||role === 'Manager'">
+        <i class="fas fa-info"></i>
         <span class="nav-item">Mon rapport de congé</span>
       </a>
     </li>

@@ -7,6 +7,5 @@ export class postUser {
     phoneNumber!: string
     job!: string
     hireDate!: Date
-    //totaLeaveAvailable!: number
     roleId!: number
 }

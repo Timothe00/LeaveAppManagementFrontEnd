@@ -25,7 +25,6 @@ export class ApiService {
   getAllUserInTableAsync(): Observable<Users[]>{
     return this.http.get<Users[]>(`${this.baseUrl}/Users`);
   }
-
   //Obtenir seulement un Utilisateur
   getUserByIdIntable(id: number){
     const urlId= `${this.baseUrl}/Users/${id}`;

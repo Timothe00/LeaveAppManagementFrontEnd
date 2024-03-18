@@ -7,7 +7,6 @@ import { updateUser } from 'src/app/core/models/updateUser.model';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import Swal from 'sweetalert2';
 
-
 @Component({
   selector: 'app-add-user-form',
   templateUrl: './add-user-form.component.html',
@@ -44,7 +43,6 @@ export class AddUserFormComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     job: new FormControl('', [Validators.required]),
     hireDate: new FormControl(new Date(), [Validators.required]),
-    //totaLeaveAvailable: new FormControl(0, [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required]),
     roleId: new FormControl(1, [Validators.required]),
     password: new FormControl(null),
@@ -58,13 +56,11 @@ export class AddUserFormComponent {
       this.getUserById(userId);
     } else {
       this.currentForm = this.addUserForm;
-    }
-    
+    }  
     this.api.getRole().pipe().subscribe((res: Role[]) => {
       this.roles = res
     })
   }
-
   getUserById(userId: number): void {
     this.api.getUserByIdIntable(userId).subscribe({
       next: (val: any) => {
@@ -75,9 +71,6 @@ export class AddUserFormComponent {
       }
     });
   }
-
-
-
   onUserCreate(): void {
     if (this.currentForm.valid) {
       if (this.isUpdate) {
@@ -95,7 +88,6 @@ export class AddUserFormComponent {
       firstName: this.updateUserForm.value.firstName as string,
       lastName: this.updateUserForm.value.lastName as string,
       email: this.updateUserForm.value.email as string,
-      //totaLeaveAvailable: this.updateUserForm.value.totaLeaveAvailable as number,
       hireDate: this.updateUserForm.value.hireDate as Date,
       phoneNumber: this.updateUserForm.value.phoneNumber as string,
       roleId: this.updateUserForm.value.roleId as number,
@@ -110,7 +102,7 @@ export class AddUserFormComponent {
       denyButtonText: `Stopper`,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Créer!",
+      confirmButtonText: "Modifier!",
     }).then((result) => {
       if (result.isConfirmed) {
         this.updateUser(userId, updateUser);
@@ -123,7 +115,7 @@ export class AddUserFormComponent {
       firstName: this.addUserForm.value.firstName as string,
       lastName: this.addUserForm.value.lastName as string,
       email: this.addUserForm.value.email as string,
-      hireDate: this.updateUserForm.value.hireDate as Date,
+      hireDate: this.addUserForm.value.hireDate as Date,
       password: this.addUserForm.value.password as string,
       phoneNumber: this.addUserForm.value.phoneNumber as string,
       roleId: this.addUserForm.value.roleId as number,
@@ -148,8 +140,8 @@ export class AddUserFormComponent {
   //fonction la creation d'un utilisateur
   private createUser(postUser: postUser): void {
     this.api.addUserInTable(postUser).subscribe({
-      next: (response: postUser) => {
-        console.log('Ajout utilisateur', response);
+      next: (res: postUser) => {
+        console.log('res=>', res);
         this.handleUserCreationSuccess();
       },
       error: () => {
@@ -161,9 +153,8 @@ export class AddUserFormComponent {
   //methode pour mettre à jour un utilisateur
   private updateUser(userId:number, updateUser:updateUser ){
       this.api.UpdateUserInTable(userId, updateUser).subscribe({
-      next: (response: any) => {
-        console.log('Mise à jour utilisateur', response);
-        // Gérer la confirmation de mise à jour
+      next: (res: any) => {
+        console.log('res=>', res);
         this.handleUserUpdateSuccess();
       },
       error: (err: any) => {
@@ -172,8 +163,7 @@ export class AddUserFormComponent {
         this.handleUserUpdateError();
       },
     });
-  }
-  
+  } 
   //fonction pour afficher un message que la création a été effectuée avec succes
   private handleUserCreationSuccess(): void {
     Swal.fire({

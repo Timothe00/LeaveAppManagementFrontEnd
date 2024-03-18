@@ -1,36 +1,36 @@
 <div class="main-top">
-      <h1>VUE D'ENSEMBLE</h1>
-      <i class="fas fa-user"><span>Bonjour, {{fullName}}</span></i>
-    </div>
-    <div class="main-skills">
-      <div class="card">
-        <i class="fab fa-app-store-ios"></i>  
-        <!-- {{ passwordVisible ? 'text' : 'password' }} -->
-        <h3>TOTAL DES DEMANDES EFFECTUEES</h3>
-        <button *ngIf="!isEmployee(role)">{{totalRequest}}</button>
-        <button *ngIf="isEmployee(role)">{{totalRequestUser}}</button>
-      </div>
-      <div class="card">
-        <i class="fas fa-clock"></i>
-        <h3>TOTAL DES DEMANDES<br> EN ATTENTE</h3>
+  <h1>VUE D'ENSEMBLE</h1>
+  <i class="fas fa-user"><span>Bonjour, {{fullName}}</span></i>
+</div>
+<div class="main-skills">
+  <div class="card">
+    <i class="fab fa-app-store-ios"></i>  
+    <!-- {{ passwordVisible ? 'text' : 'password' }} -->
+    <h3>TOTAL DES DEMANDES EFFECTUEES</h3>
+    <button (click)="goTo()" *ngIf="!isEmployee(role)">{{totalRequest}}</button>
+    <button (click)="goTo()" *ngIf="isEmployee(role)">{{totalRequestUser}}</button>
+  </div>
+  <div class="card">
+    <i class="fas fa-clock"></i>
+    <h3>TOTAL DES DEMANDES<br> EN ATTENTE</h3>
 
-        <button *ngIf="!isEmployee(role)">{{totalPending}}</button>
-        <button *ngIf="isEmployee(role)">{{totalPendingUser}}</button>
-      </div>
-      <div class="card">
-        <i class="fas fa-check"></i>
-        <h3>TOTAL DES DEMANDES APPROUVEES</h3>
+    <button (click)="goTo()" *ngIf="!isEmployee(role)">{{totalPending}}</button>
+    <button (click)="goTo()" *ngIf="isEmployee(role)">{{totalPendingUser}}</button>
+  </div>
+  <div class="card">
+    <i class="fas fa-check"></i>
+    <h3>TOTAL DES DEMANDES APPROUVEES</h3>
 
-        <button *ngIf="!isEmployee(role)">{{totalApproved}}</button>
-        <button *ngIf="isEmployee(role)">{{totalApprovedUser}}</button>
-      </div>
-      <div class="card">
-        <i class="fas fa-trash"></i>
-        <h3>TOTAL DES DEMANDES <br> REJETEES</h3>
+    <button (click)="goTo()" *ngIf="!isEmployee(role)">{{totalApproved}}</button>
+    <button (click)="goTo()" *ngIf="isEmployee(role)">{{totalApprovedUser}}</button>
+  </div>
+  <div class="card">
+    <i class="fas fa-trash"></i>
+    <h3>TOTAL DES DEMANDES <br> REJETEES</h3>
 
-        <button *ngIf="!isEmployee(role)">{{totalRejected}}</button>
-        <button *ngIf="isEmployee(role)">{{totalRejectedUser}}</button>
-      </div>
-    </div> 
+    <button (click)="goTo()" *ngIf="!isEmployee(role)">{{totalRejected}}</button>
+    <button (click)="goTo()" *ngIf="isEmployee(role)">{{totalRejectedUser}}</button>
+  </div>
+</div> 
 
-    <app-leave-calendar></app-leave-calendar>
+<app-leave-calendar></app-leave-calendar>

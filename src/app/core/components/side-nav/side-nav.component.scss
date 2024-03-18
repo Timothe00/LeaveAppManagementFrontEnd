@@ -1,4 +1,10 @@
-
+.active {
+  background-color: #f36d2a;
+  color: #fff;
+  &:hover {
+    background-color: #f36d2a;
+  }
+}
 
 nav{
     position: relative;

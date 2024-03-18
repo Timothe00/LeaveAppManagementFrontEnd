@@ -5,6 +5,7 @@ import { LeaveRequest } from 'src/app/core/models/leaveRequest.model';
 import { Users } from 'src/app/core/models/users';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { NotificationService } from 'src/app/core/services/notification/notification.service';
 import { RequestService, StatusBody } from 'src/app/core/services/request/request.service';
 import { UserInTokenService } from 'src/app/core/services/userInToken/user-in-token.service';
 import Swal from 'sweetalert2';
@@ -22,7 +23,7 @@ export class LeaveResquestListComponent {
   role!: string;
 
   page: number = 1;
-  itemsPerPage: number=4;
+  itemsPerPage: number = 4;
   totalRequest: any;
 
   searchText: any;
@@ -33,7 +34,8 @@ export class LeaveResquestListComponent {
     private token: UserInTokenService,
     private auth: AuthService,
     private router: Router,
-    ) { }
+    private notificationService: NotificationService
+  ) { }
 
   ngOnInit(): void {
     const userToken = this.token.getInfoUserToken()
@@ -58,18 +60,18 @@ export class LeaveResquestListComponent {
           }
         })
   }
-  
- 
+
+
   filterRequestsByUserRole(requests: LeaveRequest[]): LeaveRequest[] {
     // Récupérer le rôle de l'utilisateur connecté
     const userRole = this.role;
-    // Si l'utilisateur a le rôle de manager, renvoyer toutes les demandes
-    if (userRole === 'Manager') {
-      return requests;
-    }
     // Si l'utilisateur n'est pas un manager, filtrer les demandes pour ne montrer que celles de l'utilisateur connecté
     const userToken = this.token.getInfoUserToken();
     const userId = +userToken.primarysid;
+    // Si l'utilisateur a le rôle de manager, renvoyer toutes les demandes
+    if (userRole === 'Manager' || userRole === 'Admin') {
+      return requests;
+    }
     return requests.filter(request => request.employeeId === userId);
   }
 
@@ -78,13 +80,9 @@ export class LeaveResquestListComponent {
     this.api.getAllRequestInTable()
       .subscribe({
         next: (res: LeaveRequest[]) => {
-
-          console.log("response ", res);
-          
           // Filtrer les demandes en fonction du rôle de l'utilisateur connecté
           this.request = this.filterRequestsByUserRole(res);
           this.totalRequest = this.request.length;
-          console.log('response', this.totalRequest);
         },
         error: (err: any) => {
           console.log(err);
@@ -92,13 +90,12 @@ export class LeaveResquestListComponent {
       });
   }
 
-  
-  updateStatus(id: number, status: string): void {
+
+  ConfirmRefuseStatus(id: number, status: string): void {
     const body: StatusBody = {
       id,
       requestStatus: status
     }
-
     Swal.fire({
       title: "Etes-vous sûr?",
       icon: "warning",
@@ -108,13 +105,13 @@ export class LeaveResquestListComponent {
       confirmButtonText: "Oui, je confirme!"
     }).then((result) => {
       if (result.isConfirmed) {
-        // Appel à la méthode de suppression ici
         this.api.updateRequestStatus(body)
           .subscribe({
             next: () => {
               // Mise à jour de la liste des demandes après la suppression
               this.getAllRequest();
-              // Affichage de la confirmation de suppression
+              // Mettez à jour le service pour décrémenter le badge
+              this.notificationService.updateNotificationCount(0);
               Swal.fire({
                 title: "Effectué avec succès",
                 icon: "success"
@@ -134,10 +131,10 @@ export class LeaveResquestListComponent {
 
 
   getStatus(status: string): string {
-    if (status === 'Accepted') {
+    if (status === 'Acceptée') {
       return 'Accepter'
     }
-    if (status === 'Rejected') {
+    if (status === 'Rejetée') {
       return 'Refuser'
     }
     return 'En attente'
@@ -187,7 +184,7 @@ export class LeaveResquestListComponent {
     });
   }
 
-
+  //methode pour export en excel
   onExport() {
     this.api.exportToExcel().pipe(
       tap(res => {

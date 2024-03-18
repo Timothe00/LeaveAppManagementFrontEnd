@@ -54,7 +54,8 @@ export class EmployeeListComponent {
           .subscribe({
             next: () => {
               // Mise à jour de la liste des utilisateurs après la suppression
-              this.fetchAllAllUser();
+              //this.fetchAllAllUser();
+              this.router.navigate([`dashboard/EmployeeList`]);
               // Affichage de la confirmation de suppression
               Swal.fire({
                 title: "Supprimé!",

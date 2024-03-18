@@ -105,12 +105,7 @@ export class LeaveRequestFormComponent {
       return null;
     }
   }
-  // getDateString(date: Date): string {
-  //   const year = date.getFullYear();
-  //   const month = `${date.getMonth() + 1}`.padStart(2, '0');
-  //   const day = `${date.getDate()}`.padStart(2, '0');
-  //   return `${day}/${month}/${year}`;
-  // }
+
   getRequestById(leavId: number): void {
     this.req.getRequestByIdInTable(leavId).subscribe({
       next: (val: any) => {
@@ -144,6 +139,7 @@ export class LeaveRequestFormComponent {
               text: "Modification éffectuée avec succès!",
               icon: "success"
             });
+            this.router.navigate(['dashboard/LeaveResquestList']);
           },
           error: (err: any) => {
             console.error('Erreur lors de l\'ajout de la demande', err);

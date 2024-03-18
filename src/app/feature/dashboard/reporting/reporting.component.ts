@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Reporting, ReportingByUser } from 'src/app/core/models/reporting.model';
 import { Users } from 'src/app/core/models/users';
 import { ApiService } from 'src/app/core/services/api/api.service';
@@ -36,6 +37,7 @@ export class ReportingComponent {
  constructor(private userToken: UserInTokenService, 
   private auth: AuthService,
   private apiUser: ApiService,
+  private rooter: Router,
   private token: UserInTokenService,
   private api: ApiService) {}
 
@@ -129,6 +131,10 @@ getUserById(id: number) {
           console.log(err);
         }
       })
+  }
+
+  goTo(): void{
+    this.rooter.navigateByUrl('/dashboard/LeaveResquestList')
   }
 
 }
