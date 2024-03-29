@@ -12,6 +12,7 @@
                     <div class="input-box">
                         <span class="details">Date fin du congé<span class="errorMessage">{{getRequiredMessage("commentary")}}</span></span>
                         <input type="date" formControlName="dateEnd" placeholder="Entrer le Prénoms" required>
+                        <small>{{getErrorMessage("dateEnd")}}</small>
                     </div>
                     <div class="input-box">
                         <span class="details">Type de Congé<span class="errorMessage">{{getRequiredMessage("commentary")}}</span></span>
@@ -27,6 +28,7 @@
                     <div class="input-box">
                         <span class="details">Demande éffectuée le:<span class="errorMessage">{{getRequiredMessage("commentary")}}</span></span>
                         <input type="date" formControlName="dateRequest" required>
+                        <small>{{getErrorMessage("dateRequest")}}</small>
                     </div>
                     <div class="input-box" *ngIf="role === 'Admin'">
                         <span class="details">primarysId</span>
@@ -43,6 +45,7 @@
                 </div>
             </form>
         </div>
+      <div class="loader" *ngIf="isLoading"></div>
     </div>
 </div>
 

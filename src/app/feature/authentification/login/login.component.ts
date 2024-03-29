@@ -16,10 +16,11 @@ export class LoginComponent {
 
   // email!: string
   // password!: string
+  isLoading: boolean = false;
 
   profileForm = new FormGroup({
-    email: new FormControl('david.jones@example.com', [Validators.required, Validators.email]),
-    password: new FormControl('manager2password', [Validators.required, Validators.minLength(5)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(5)]),
   });
 
   constructor(private auth: AuthService, private route: Router, private token: UserInTokenService) {}
@@ -32,12 +33,13 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    //console.log(this.profileForm.value);
+    //lancer le chargement
+    this.isLoading = true;
+
     const userInfo: UserLogin = {
       email: this.profileForm.value.email as string,
       password: this.profileForm.value.password as string,
     };
-
     this.auth.login(userInfo).subscribe({
       next:(res)=>{
         this.profileForm.reset()
@@ -46,9 +48,8 @@ export class LoginComponent {
         
         this.token.setUserFromToken(tokenPayload.unique_name);
         this.token.setRoleFromToken(tokenPayload.role);
-
         this.route.navigate(['dashboard/home'])
-
+        
         const Toast = Swal.mixin({
           toast: true,
           position: "top-end",
@@ -60,6 +61,8 @@ export class LoginComponent {
           icon: "success",
           title: "Connecté avec succès"
         });
+        //arrêter le loading après la connexion
+        this.isLoading = false;
       }, 
       error:()=>{
         const Toast = Swal.mixin({
@@ -73,8 +76,8 @@ export class LoginComponent {
           icon: "error",
           title: "Veuillez remplir correctement les champs svp!!"
         });
-      }
+        this.isLoading = false;
+      }  
     })
-
   }
 }

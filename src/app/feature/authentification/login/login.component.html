@@ -7,16 +7,17 @@
     as manqué!
   </p>
   <form [formGroup]="profileForm">
-    <input type="email" placeholder="Entrez votre adresse e-mail" formControlName="email" required/>
+    <input type="email" placeholder="Entrez votre adresse e-mail" formControlName="email" required />
     <small *ngIf="profileForm.controls['email'].hasError('required')">*L'adresse e-mail est requise </small>
     <small *ngIf="profileForm.controls['email'].hasError('email')">e-mail invalid </small>
 
     <input type="password" placeholder="Password" formControlName="password" />
     <small *ngIf="profileForm.controls['password'].hasError('required')">*Le mot de passe est requis</small>
-    
+
     <p class="recover">
       <a onclick="window.dialog.showModal();">Mot de passe oublié?</a>
     </p>
   </form>
   <button (click)="onSubmit()">se connecter</button>
+  <div class="loader" *ngIf="isLoading"></div>
 </div>

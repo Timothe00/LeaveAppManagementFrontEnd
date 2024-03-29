@@ -12,6 +12,7 @@ export class PasswordForgotComponent {
 
   public resetPasswordEmail!: string;
   public isValidEmail!: boolean;
+  isLoading: boolean = false;
 
   constructor(private reset: ResetPasswordService, private route: Router) {}
 
@@ -26,7 +27,7 @@ export class PasswordForgotComponent {
   confirmToSend(){
     if(this.checkValidEmail(this.resetPasswordEmail)){
       console.log(this.resetPasswordEmail);
-
+      this.isLoading = true;
       this.reset.sendResetPasswordLink(this.resetPasswordEmail)
       .subscribe({
         next: (res)=>{
@@ -41,6 +42,7 @@ export class PasswordForgotComponent {
             icon: "success",
             title: "Super! veuiller consulter votre boîte e-mail"
           });
+          this.isLoading = false;
           this.route.navigate(['login']);
         },
         error:(err)=>{
@@ -55,6 +57,7 @@ export class PasswordForgotComponent {
             icon: "error",
             title: "Cette adresse e-mail n'existe pas!"
           });
+          this.isLoading = false;
         }
       })
     }

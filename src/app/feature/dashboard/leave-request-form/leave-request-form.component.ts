@@ -22,13 +22,14 @@ export class LeaveRequestFormComponent {
   isHidden: boolean = true; // hidden par defaut
   currentForm!: FormGroup;
   isUpdate: boolean= false;
+  isLoading: boolean = false;
 
   role!: string;
 
   addLeaveForm!: FormGroup
-  
+
   updateLeaveForm = new FormGroup({
-    id: new FormControl(), 
+    id: new FormControl(),
     dateStart: new FormControl(new Date, [Validators.required]),
     dateEnd: new FormControl(new Date, [Validators.required]),
     leaveId: new FormControl(0, [Validators.required]),
@@ -45,7 +46,7 @@ export class LeaveRequestFormComponent {
     private router: Router,
     private auth: AuthService,
     private route: ActivatedRoute) { }
-    
+
 
   ngOnInit(): void {
     const user = this.userToken.getInfoUserToken();
@@ -120,6 +121,7 @@ export class LeaveRequestFormComponent {
 
   onSubmit(): void {
     if (this.currentForm.valid) {
+      this.isLoading = true;
       if (this.isUpdate) {
         const leavId = this.currentForm.value.id;
         const updateLeave: UpdateLeave = {
@@ -133,6 +135,7 @@ export class LeaveRequestFormComponent {
 
         this.req.updateRequestInTable(leavId, updateLeave).subscribe({
           next: (response: any) => {
+            this.isLoading = false;
             console.log('Mise à jour de la demande', response);
             Swal.fire({
               title: "Super!",
@@ -159,7 +162,7 @@ export class LeaveRequestFormComponent {
           employeeId: this.addLeaveForm.value.primarysId,
           requestStatus: this.addLeaveForm.value.status,
           leaveTypeId: this.addLeaveForm.value.leaveId
-        }      
+        }
         this.req.addRequestInTable(reqst).subscribe({
           next: (response: any) => {
             console.log('Ajout demande', response);
@@ -168,7 +171,7 @@ export class LeaveRequestFormComponent {
               text: "Demande éffectuée avec succès!",
               icon: "success"
             });
-            
+            this.isLoading = false; // Désactivation du loader
             this.router.navigate(['dashboard/LeaveResquestList']);
           },
           error: (err: any) => {
@@ -178,6 +181,8 @@ export class LeaveRequestFormComponent {
               title: "Oops...",
               text: "Erreur lors de l'ajout de la demande"
             });
+            //arreter le chargement
+            this.isLoading = false;
           }
         });
       }
